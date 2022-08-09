@@ -32,8 +32,8 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
           ],
           series: [
             ColumnSeries(
-              name: "Total",
-              yAxisName: "Total",
+              name: "Boys",
+              yAxisName: "Boys",
               // isVisibleInLegend: true,
               isVisible: true,
               dataSource: [datasource[index]],
@@ -44,8 +44,8 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
               ),
             ),
             ColumnSeries(
-              name: "Annual",
-              yAxisName: "Annual",
+              name: "Girls",
+              yAxisName: "Girls",
               isVisible: true,
               dataSource: [datasource[index]],
               xValueMapper: (ChartData data, _) => data.collegeName,
@@ -112,8 +112,8 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
         .map(
           (e) => ChartData(
             e['name'],
-            e['total'],
-            e['annual'],
+            e['boys'],
+            e['girls'],
           ),
         )
         .toList();
@@ -126,9 +126,12 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width * 0.98,
       height: MediaQuery.of(context).size.height * 0.95,
-      child: Table(
-        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-        children: [],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Table(
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          children: tableGen(),
+        ),
       ),
     );
   }

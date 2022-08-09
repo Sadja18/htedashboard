@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './views/map_view.dart';
 import './screens/details.dart';
 import './screens/summary.dart';
+import './screens/gender_parity_index_screen.dart';
 
 class BaseView extends StatefulWidget {
   const BaseView({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class _BaseViewState extends State<BaseView> {
             // ),
             InkWell(
               onTap: () {
-                // Navigator.of(context).pushNamed(ScreenDetailTables.routeName);
+                Navigator.of(context).pushNamed(GPIScreen.routeName);
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.30 * 0.50,
@@ -80,7 +81,7 @@ class _BaseViewState extends State<BaseView> {
                   borderRadius: BorderRadius.circular(14.0),
                 ),
                 child: const Text(
-                  "GPI",
+                  "Gender Parity Index",
                   style: TextStyle(
                     color: Colors.white,
                   ),

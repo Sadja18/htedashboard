@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import './base_view.dart';
 import './screens/details.dart';
 import './screens/summary.dart';
+import './screens/gender_parity_index_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         "/": (ctx) => BaseView(),
         ScreenDetailTables.routeName: (ctx) => ScreenDetailTables(),
         SummaryScreen.routeName: (ctx) => SummaryScreen(),
+        GPIScreen.routeName: (ctx) => GPIScreen(),
       },
       debugShowCheckedModeBanner: false,
     );
