@@ -1,38 +1,69 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/src/foundation/key.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-// import 'package:intl/intl.dart';
+
 import '../models/local_data.dart' as records;
 
-class SummaryTracker extends StatefulWidget {
-  const SummaryTracker({Key? key}) : super(key: key);
+class SummaryOthersTracker extends StatefulWidget {
+  final String type;
+  const SummaryOthersTracker({
+    Key? key,
+    required this.type,
+  }) : super(key: key);
 
   @override
-  State<SummaryTracker> createState() => _SummaryTrackerState();
+  State<SummaryOthersTracker> createState() => _SummaryOthersTrackerState();
 }
 
-class _SummaryTrackerState extends State<SummaryTracker> {
-  // int recordIndex = 0;
+class _SummaryOthersTrackerState extends State<SummaryOthersTracker> {
   late List<ChartData> datasource;
-  @override
-  void initState() {
-    if (kDebugMode) {
-      log(records.intake.length.toString());
+
+  List<TableRow> tableGen() {
+    List<TableRow> rows = [];
+
+    for (int i = 0; i < datasource.length; i++) {
+      if (i < datasource.length) {
+        TableRow tableRowTmp = tableRow(i);
+        rows.add(tableRowTmp);
+        i = i + 3;
+      } else {
+        break;
+      }
     }
-    datasource = records.intake
-        .map(
-          (e) => ChartData(
-            e['name'],
-            e['total'],
-            e['annual'],
-          ),
-        )
-        .toList();
-    super.initState();
+    return rows;
+  }
+
+  TableRow tableRow(baseIndex) {
+    return TableRow(
+      children: [
+        (baseIndex < datasource.length)
+            ? tableCell(baseIndex)
+            : const SizedBox(
+                height: 0,
+                width: 0,
+              ),
+        (baseIndex + 1 < datasource.length)
+            ? tableCell(baseIndex + 1)
+            : const SizedBox(
+                height: 0,
+                width: 0,
+              ),
+        (baseIndex + 2 < datasource.length)
+            ? tableCell(baseIndex + 2)
+            : const SizedBox(
+                height: 0,
+                width: 0,
+              ),
+        (baseIndex + 3 < datasource.length)
+            ? tableCell(baseIndex + 3)
+            : const SizedBox(
+                height: 0,
+                width: 0,
+              ),
+      ],
+    );
   }
 
   Widget tableCell(index) {
@@ -81,56 +112,51 @@ class _SummaryTrackerState extends State<SummaryTracker> {
     );
   }
 
-  TableRow tableRow(baseIndex) {
-    return TableRow(
-      children: [
-        (baseIndex < datasource.length)
-            ? tableCell(baseIndex)
-            : const SizedBox(
-                height: 0,
-                width: 0,
+  @override
+  void initState() {
+    switch (widget.type) {
+      case "Medical":
+        datasource = records.summaryOthers["Medical"]!
+            .map(
+              (e) => ChartData(
+                e['name'],
+                e['total'],
+                e['annual'],
               ),
-        (baseIndex + 1 < datasource.length)
-            ? tableCell(baseIndex + 1)
-            : const SizedBox(
-                height: 0,
-                width: 0,
-              ),
-        (baseIndex + 2 < datasource.length)
-            ? tableCell(baseIndex + 2)
-            : const SizedBox(
-                height: 0,
-                width: 0,
-              ),
-        (baseIndex + 3 < datasource.length)
-            ? tableCell(baseIndex + 3)
-            : const SizedBox(
-                height: 0,
-                width: 0,
-              ),
-      ],
-    );
-  }
-
-  List<TableRow> tableGen() {
-    List<TableRow> rows = [];
-
-    for (int i = 0; i < datasource.length; i++) {
-      if (i < datasource.length) {
-        TableRow tableRowTmp = tableRow(i);
-        rows.add(tableRowTmp);
-        i = i + 3;
-      } else {
+            )
+            .toList();
         break;
-      }
+      case "Tourism":
+        datasource = records.summaryOthers["Tourism"]!
+            .map(
+              (e) => ChartData(
+                e['name'],
+                e['total'],
+                e['annual'],
+              ),
+            )
+            .toList();
+        break;
+      case "Private":
+        datasource = records.summaryOthers["Private"]!
+            .map(
+              (e) => ChartData(
+                e['name'],
+                e['total'],
+                e['annual'],
+              ),
+            )
+            .toList();
+        break;
+      default:
+        break;
     }
-    return rows;
+
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // late List<ChartData> data=[ChartData()];
-
     return Container(
       width: MediaQuery.of(context).size.width * 0.98,
       height: MediaQuery.of(context).size.height * 0.95,

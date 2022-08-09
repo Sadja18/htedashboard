@@ -35,9 +35,35 @@ class _BaseViewState extends State<BaseView> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.of(context).pushNamed(ScreenDetailTables.routeName);
+            //   },
+            //   child: Container(
+            //     width: MediaQuery.of(context).size.width * 0.30 * 0.50,
+            //     alignment: Alignment.center,
+            //     margin: const EdgeInsets.symmetric(
+            //       vertical: 8.0,
+            //     ),
+            //     padding: const EdgeInsets.symmetric(
+            //       vertical: 8.0,
+            //       horizontal: 3.0,
+            //     ),
+            //     decoration: BoxDecoration(
+            //       color: const Color.fromARGB(255, 134, 11, 178),
+            //       borderRadius: BorderRadius.circular(14.0),
+            //     ),
+            //     child: const Text(
+            //       "Info",
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed(ScreenDetailTables.routeName);
+                // Navigator.of(context).pushNamed(ScreenDetailTables.routeName);
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.30 * 0.50,
@@ -54,7 +80,7 @@ class _BaseViewState extends State<BaseView> {
                   borderRadius: BorderRadius.circular(14.0),
                 ),
                 child: const Text(
-                  "Info",
+                  "GPI",
                   style: TextStyle(
                     color: Colors.white,
                   ),

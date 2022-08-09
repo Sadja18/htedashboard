@@ -1,39 +1,18 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 // import 'package:flutter/src/foundation/key.dart';
 // import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-// import 'package:intl/intl.dart';
 import '../models/local_data.dart' as records;
 
-class SummaryTracker extends StatefulWidget {
-  const SummaryTracker({Key? key}) : super(key: key);
+class GenderParityIndex extends StatefulWidget {
+  const GenderParityIndex({Key? key}) : super(key: key);
 
   @override
-  State<SummaryTracker> createState() => _SummaryTrackerState();
+  State<GenderParityIndex> createState() => _GenderParityIndexState();
 }
 
-class _SummaryTrackerState extends State<SummaryTracker> {
-  // int recordIndex = 0;
+class _GenderParityIndexState extends State<GenderParityIndex> {
   late List<ChartData> datasource;
-  @override
-  void initState() {
-    if (kDebugMode) {
-      log(records.intake.length.toString());
-    }
-    datasource = records.intake
-        .map(
-          (e) => ChartData(
-            e['name'],
-            e['total'],
-            e['annual'],
-          ),
-        )
-        .toList();
-    super.initState();
-  }
 
   Widget tableCell(index) {
     return TableCell(
@@ -59,7 +38,7 @@ class _SummaryTrackerState extends State<SummaryTracker> {
               isVisible: true,
               dataSource: [datasource[index]],
               xValueMapper: (ChartData data, _) => data.collegeName,
-              yValueMapper: (ChartData data, _) => data.total,
+              yValueMapper: (ChartData data, _) => data.numBoys,
               dataLabelSettings: const DataLabelSettings(
                 isVisible: true,
               ),
@@ -70,7 +49,7 @@ class _SummaryTrackerState extends State<SummaryTracker> {
               isVisible: true,
               dataSource: [datasource[index]],
               xValueMapper: (ChartData data, _) => data.collegeName,
-              yValueMapper: (ChartData data, _) => data.annual,
+              yValueMapper: (ChartData data, _) => data.numGirls,
               dataLabelSettings: const DataLabelSettings(
                 isVisible: true,
               ),
@@ -128,27 +107,36 @@ class _SummaryTrackerState extends State<SummaryTracker> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    // late List<ChartData> data=[ChartData()];
+  void initState() {
+    datasource = records.gpi
+        .map(
+          (e) => ChartData(
+            e['name'],
+            e['total'],
+            e['annual'],
+          ),
+        )
+        .toList();
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       width: MediaQuery.of(context).size.width * 0.98,
       height: MediaQuery.of(context).size.height * 0.95,
-      alignment: Alignment.center,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Table(
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          children: tableGen(),
-        ),
+      child: Table(
+        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+        children: [],
       ),
     );
   }
 }
 
 class ChartData {
-  ChartData(this.collegeName, this.total, this.annual);
+  ChartData(this.collegeName, this.numBoys, this.numGirls);
   final String collegeName;
-  final double total;
-  final double annual;
+  final double numBoys;
+  final double numGirls;
 }

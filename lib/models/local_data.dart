@@ -212,3 +212,179 @@ List<Map<String, dynamic>> intake = [
     "annual": 50,
   },
 ];
+
+const Map<String, List<Map<String, dynamic>>> summaryOthers = {
+  "Medical": [
+    {
+      "name": "Nursing College, Daman",
+      "total": 223,
+      "annual": 0,
+    },
+    {
+      "name": "Medical College, Silvassa",
+      "total": 502,
+      "annual": 0,
+    },
+    {
+      "name": "Nursing College, Silvassa",
+      "total": 284,
+      "annual": 0,
+    },
+    {
+      "name": "Paramedical College, Silvassa",
+      "total": 319,
+      "annual": 0,
+    },
+    {
+      "name": "Paramedical College Daman",
+      "total": 68,
+      "annual": 0,
+    },
+    {
+      "name": "Dental College, Daman",
+      "total": 286,
+      "annual": 0,
+    },
+  ],
+  "Tourism": [
+    {
+      "name": "Institute of Hotel Management",
+      "total": 105,
+      "annual": 0,
+    },
+  ],
+  "Private": [
+    {
+      "name": "SSR Institute and Management / Pharmacy, Silvassa",
+      "total": 2696,
+      "annual": 0,
+    },
+    {
+      "name": "SDMC, College, Silvassa",
+      "total": 1300,
+      "annual": 0,
+    },
+    {
+      "name": "Shreenathji BCA College, Daman",
+      "total": 158,
+      "annual": 0,
+    },
+  ],
+};
+
+const List<Map<String, dynamic>> gpi = [
+  {
+    "name": "Government College, Diu",
+    "boys": 415,
+    "girls": 360,
+    "total": 775,
+  },
+  {
+    "name": "Government College, Daman",
+    "boys": 491,
+    "girls": 940,
+    "total": 1431,
+  },
+  {
+    "name": "APJ Abdul Kalaam, Silvassa",
+    "boys": 723,
+    "girls": 1061,
+    "total": 1784,
+  },
+  {
+    "name": "Government Polytechnic, Daman",
+    "boys": 807,
+    "girls": 220,
+    "total": 1027,
+  },
+  {
+    "name": "Government Polytechnic, Diu",
+    "boys": 288,
+    "girls": 12,
+    "total": 300,
+  },
+  {
+    "name": "Government Polytechnic, Silvassa",
+    "boys": 456,
+    "girls": 114,
+    "total": 570,
+  },
+  {
+    "name": "Government Engineering College, Daman",
+    "boys": 662,
+    "girls": 130,
+    "total": 792,
+  },
+  {
+    "name": "IIIT, Diu",
+    "boys": 131,
+    "girls": 14,
+    "total": 145,
+  },
+  {
+    "name": "B Ed. College, Daman",
+    "boys": 27,
+    "girls": 80,
+    "total": 107,
+  },
+  {
+    "name": "Nursing College, Daman",
+    "boys": 0,
+    "girls": 223,
+    "total": 223,
+  },
+  {
+    "name": "Medical College, Silvassa",
+    "boys": 213,
+    "girls": 289,
+    "total": 502,
+  },
+  {
+    "name": "Nursing College, Silvassa",
+    "boys": 0,
+    "girls": 284,
+    "total": 284,
+  },
+  {
+    "name": "Paramedical College, Silvassa",
+    "boys": 74,
+    "girls": 245,
+    "total": 319,
+  },
+  {
+    "name": "Paramedical College, Daman",
+    "boys": 6,
+    "girls": 62,
+    "total": 68,
+  },
+  {
+    "name": "Dental College, Daman",
+    "boys": 56,
+    "girls": 236,
+    "total": 286,
+  },
+  {
+    "name": "SSR Institute and Management / Pharmacy, Silvassa",
+    "boys": 1346,
+    "girls": 1350,
+    "total": 2696,
+  },
+  {
+    "name": "SDMC, College, Silvassa",
+    "boys": 715,
+    "girls": 585,
+    "total": 1300,
+  },
+  {
+    "name": "Shreenathji BCA College, Daman",
+    "boys": 84,
+    "girls": 74,
+    "total": 158,
+  },
+  {
+    "name": "Institute of Hotel Management, Silvassa",
+    "boys": 0,
+    "girls": 0,
+    "total": 0,
+  },
+];
