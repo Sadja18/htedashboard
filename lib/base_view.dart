@@ -4,6 +4,7 @@ import './views/map_view.dart';
 import './screens/details.dart';
 import './screens/summary.dart';
 import './screens/gender_parity_index_screen.dart';
+import './screens/attendance.dart';
 
 class BaseView extends StatefulWidget {
   const BaseView({Key? key}) : super(key: key);
@@ -115,7 +116,10 @@ class _BaseViewState extends State<BaseView> {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context)
+                    .pushNamed(ScreenAttendancePercentages.routeName);
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.30 * 0.50,
                 alignment: Alignment.center,

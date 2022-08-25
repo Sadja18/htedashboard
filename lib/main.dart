@@ -6,6 +6,7 @@ import './base_view.dart';
 import './screens/details.dart';
 import './screens/summary.dart';
 import './screens/gender_parity_index_screen.dart';
+import './screens/attendance.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +35,8 @@ class MyApp extends StatelessWidget {
         ScreenDetailTables.routeName: (ctx) => ScreenDetailTables(),
         SummaryScreen.routeName: (ctx) => SummaryScreen(),
         GPIScreen.routeName: (ctx) => GPIScreen(),
+        ScreenAttendancePercentages.routeName: (ctx) =>
+            ScreenAttendancePercentages(),
       },
       debugShowCheckedModeBanner: false,
     );
