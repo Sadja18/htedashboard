@@ -27,6 +27,8 @@ dependencies:
   flutter_map: ^2.0.0
   latlong: ^0.6.1
   syncfusion_flutter_charts: ^20.2.43
+  intl: ^0.17.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
