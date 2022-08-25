@@ -23,7 +23,6 @@ class _SelectorState extends State<Selector> {
 
   @override
   void initState() {
-    optionNames.add("");
     if (widget.optionNames.isNotEmpty) {
       for (var element in widget.optionNames) {
         optionNames.add(element);
