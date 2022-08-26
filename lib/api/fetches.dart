@@ -98,3 +98,105 @@ Future<dynamic> fetchSelectorBaseRecords() async {
     return null;
   }
 }
+
+Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
+  try {
+    if (kDebugMode) {
+      log('sending');
+    }
+    Map<String, String> queryParams = {
+      "permit": "staffCount",
+      "college": collegeName
+    };
+    var response = await http.get(
+      Uri(
+          scheme: 'http',
+          host: "localhost",
+          path: "/api/fetchcollegeinfo.php",
+          queryParameters: queryParams),
+      headers: {
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+    );
+
+    if (kDebugMode) {
+      log('receiving');
+      log(response.statusCode.toString());
+      log(response.body);
+    }
+
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+      if (json['message'].toString().toLowerCase() == 'success') {
+        if (json['data'] != null && json['data'].isNotEmpty) {
+          var data = json['data'][0];
+          var collegeId = data['id'];
+
+          var headName = data['head_name'] == false ? "" : data['head_name'];
+
+          var affliatedTo = data['univ_id'] == false ? "" : data['univ_id'][1];
+
+          var email = data['email'] == false || data['email'] == ""
+              ? ""
+              : data['email'];
+
+          var deptsCount =
+              data['dept_ids'] == false ? 0 : data['dept_ids'].length;
+
+          var deptIds = data['dept_ids'] == false ? [] : data['dept_ids'];
+
+          var coursesCount =
+              data['course_ids'] == false ? 0 : data['course_ids'].length;
+
+          var courseIds = data['course_ids'] == false ? [] : data['course_ids'];
+
+          var studentsCount =
+              data['student_ids'] == false ? 0 : data['student_ids'].length;
+
+          var studentIds =
+              data['student_ids'] == false ? [] : data['student_ids'];
+
+          var teachersCount =
+              data['teacher_ids'] == false ? 0 : data['teacher_ids'].length;
+
+          var teacherIds =
+              data['teacher_ids'] == false ? [] : data['teacher_ids'];
+
+          var staffsCount =
+              data['staff_ids'] == false ? 0 : data['staff_ids'].length;
+
+          var staffIds = data['staff_ids'] == false ? [] : data['staff_ids'];
+
+          return {
+            "collegeId": collegeId,
+            "HoI": headName,
+            "affliatedTo": affliatedTo,
+            'email': email,
+            "deptsCount": deptsCount,
+            "depts": deptIds,
+            "coursesCount": coursesCount,
+            "courses": courseIds,
+            "studentsCount": studentsCount,
+            "studentIds": studentIds,
+            "teachersCount": teachersCount,
+            "teachers": teacherIds,
+            "staffsCount": staffsCount,
+            "staffs": staffIds
+          };
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+    return null;
+  }
+}

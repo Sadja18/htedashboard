@@ -29,7 +29,7 @@ class ScreenDetailTables extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: const [
             ListInstitutes(),
             CountInstituteWiseStaff(),
             CountInstituteWiseStudent(),

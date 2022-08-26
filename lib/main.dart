@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         ScreenAttendancePercentages.routeName: (ctx) =>
             ScreenAttendancePercentages(),
       },
-      debugShowCheckedModeBanner: false,
+      // debugShowCheckedModeBanner: false,
     );
   }
 }

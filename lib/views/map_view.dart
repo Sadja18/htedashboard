@@ -8,7 +8,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ltlng;
 
 import '../models/local_data.dart' as localData;
-import '../api/read_base_info.dart';
+// import '../api/read_base_info.dart';
+import '../api/fetches.dart';
 
 var myMapboxToken =
     "pk.eyJ1Ijoic2FkamEiLCJhIjoiY2w1dXg5N29yMDQ2cjNldDJmcG1zYmc5ZCJ9.z_QoEiKHhuWFyXBj4jLuzQ";
@@ -89,21 +90,21 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
 
 //3
   List<ltlng.LatLng> govtCollegeDamanPolypot = [
-    ltlng.LatLng(20.423547, 72.849099),
-    ltlng.LatLng(20.423403, 72.849111),
-    ltlng.LatLng(20.423412, 72.849237),
-    ltlng.LatLng(20.423505, 72.849232),
-    ltlng.LatLng(20.423512, 72.849339),
-    ltlng.LatLng(20.423638, 72.849330),
-    ltlng.LatLng(20.423635, 72.849231),
-    ltlng.LatLng(20.423532, 72.849241),
-    ltlng.LatLng(20.423529, 72.849208),
-    ltlng.LatLng(20.423559, 72.849197),
-    ltlng.LatLng(20.423559, 72.849197),
-    ltlng.LatLng(20.423487, 72.849387),
-    ltlng.LatLng(20.423502, 72.849505),
-    ltlng.LatLng(20.423594, 72.849485),
-    ltlng.LatLng(20.423584, 72.849366),
+    // ltlng.LatLng(20.423547, 72.849099),
+    // ltlng.LatLng(20.423403, 72.849111),
+    // ltlng.LatLng(20.423412, 72.849237),
+    // ltlng.LatLng(20.423505, 72.849232),
+    // ltlng.LatLng(20.423512, 72.849339),
+    // ltlng.LatLng(20.423638, 72.849330),
+    // ltlng.LatLng(20.423635, 72.849231),
+    // ltlng.LatLng(20.423532, 72.849241),
+    // ltlng.LatLng(20.423529, 72.849208),
+    // ltlng.LatLng(20.423559, 72.849197),
+    // ltlng.LatLng(20.423559, 72.849197),
+    // ltlng.LatLng(20.423487, 72.849387),
+    // ltlng.LatLng(20.423502, 72.849505),
+    // ltlng.LatLng(20.423594, 72.849485),
+    // ltlng.LatLng(20.423584, 72.849366),
   ];
 
 //4
@@ -185,7 +186,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
     ltlng.LatLng(20.7385856712654, 71.00427697885928),
   ];
 
-  Widget collegeDetailWidget() {
+  Widget collegeDetailWidget(data) {
     return Container(
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
@@ -221,8 +222,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        localData.college['Government College Daman']!['HoI']
-                            .toString(),
+                        data['HoI'],
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
@@ -248,9 +248,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        localData.college['Government College Daman']![
-                                'Affliated_To']
-                            .toString(),
+                        data['affliatedTo'].toString(),
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
@@ -276,8 +274,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        localData.college['Government College Daman']!['Email']
-                            .toString(),
+                        data['email'].toString(),
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
@@ -303,9 +300,33 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        localData.college['Government College Daman']!['Depts']
-                            .length
-                            .toString(),
+                        data['deptsCount'].toString(),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              TableRow(
+                children: [
+                  const TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Number of Courses: ",
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                  TableCell(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        data['coursesCount'].toString(),
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
@@ -331,9 +352,59 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        localData.college['Government College Daman']![
-                                'Number of Teaching Staff']
-                            .toString(),
+                        data['teachersCount'].toString(),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              TableRow(
+                children: [
+                  const TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Number of Non-Teaching Staff: ",
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                  TableCell(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        data['staffsCount'].toString(),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              TableRow(
+                children: [
+                  const TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Number of Students: ",
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                  TableCell(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        data['studentsCount'].toString(),
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
@@ -344,59 +415,93 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               ),
             ],
           ),
-          // Table(
-          //   defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          //   columnWidths: const {
-          //     0: FractionColumnWidth(0.50),
-          //     1: FractionColumnWidth(0.50),
-          //   },
-          // ),
         ],
       ),
     );
   }
 
   Future<void> showDetails(String collegeName) async {
-    return showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (ctx) {
-          return AlertDialog(
-            title: Container(
-              alignment: Alignment.center,
-              child: Text(collegeName),
-            ),
-            content: Container(
-              width: MediaQuery.of(context).size.width * 0.20,
-              height: MediaQuery.of(context).size.height * 0.40,
-              alignment: Alignment.center,
-              child: collegeName == "Government College Daman"
-                  ? collegeDetailWidget()
-                  : const Text("College detail info"),
-            ),
-            actions: [
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 4.0,
-                    vertical: 4.0,
-                  ),
-                  // ignore: prefer_const_constructors
-                  child: Text(
-                    "Close",
+    var data = await fetchSingleCollegeInfo(collegeName);
+
+    if (data != null) {
+      return showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (ctx) {
+            return AlertDialog(
+              title: Container(
+                alignment: Alignment.center,
+                child: Text(collegeName),
+              ),
+              content: Container(
+                width: MediaQuery.of(context).size.width * 0.40,
+                height: MediaQuery.of(context).size.height * 0.45,
+                alignment: Alignment.center,
+                child: collegeDetailWidget(data),
+              ),
+              actions: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 4.0,
+                      vertical: 4.0,
+                    ),
                     // ignore: prefer_const_constructors
-                    style: TextStyle(
-                      color: Colors.blue,
+                    child: Text(
+                      "Close",
+                      // ignore: prefer_const_constructors
+                      style: TextStyle(
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ),
+              ],
+            );
+          });
+    } else {
+      return showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (ctx) {
+            return AlertDialog(
+              title: Container(
+                alignment: Alignment.center,
+                child: Text(collegeName),
               ),
-            ],
-          );
-        });
+              content: Container(
+                width: MediaQuery.of(context).size.width * 0.20,
+                height: MediaQuery.of(context).size.height * 0.40,
+                alignment: Alignment.center,
+                child: Text("No detailed information found on $collegeName"),
+              ),
+              actions: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 4.0,
+                      vertical: 4.0,
+                    ),
+                    // ignore: prefer_const_constructors
+                    child: Text(
+                      "Close",
+                      // ignore: prefer_const_constructors
+                      style: TextStyle(
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          });
+    }
   }
 
   FlutterMap getMap() {
@@ -558,7 +663,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                     }
                   },
                   onTap: () async {
-                    showDetails("Government Engineering College daman");
+                    showDetails("Government Engineering College Daman");
                   },
                   // ignore: prefer_const_constructors
                   child: Image.asset(
@@ -588,7 +693,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                   child: Image.asset(
                     "assets/images/marker_hat_filled.png",
                     fit: BoxFit.cover,
-                    semanticLabel: "Government Engineering College Daman",
+                    semanticLabel: "Government Polytechnic Daman",
                     height: 30,
                   ),
                 ),
@@ -801,7 +906,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
   }
 
   void dataLoader() async {
-    await readCoordinates();
+    // await readCoordinates();
   }
 
   @override
