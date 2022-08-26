@@ -37,8 +37,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
       ltlng.LatLng(20.41379008533039, 72.86259918650929);
 
 //3
-  ltlng.LatLng govtCollegeDaman =
-      ltlng.LatLng(20.397494216028726, 72.83277762513187);
+  ltlng.LatLng govtCollegeDaman = ltlng.LatLng(20.423289, 72.849520);
 
 //4
   ltlng.LatLng govtITIDaman =
@@ -504,7 +503,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                 fontSize: 25,
                 color: Colors.black,
               ),
-              label: "Government Polytechnics, Diu",
+              label: "Government Polytechnic, Diu",
               points: govtPolytechnicDiuPolyplot,
             ),
             //8
