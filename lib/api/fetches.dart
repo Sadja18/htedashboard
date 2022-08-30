@@ -18,7 +18,7 @@ Future<dynamic> fetchSelectorBaseRecords() async {
       Uri(
           scheme: 'http',
           host: "localhost",
-          path: "/api/fetchdcvc.php",
+          path: "/hteapi/fetchdcvc.php",
           queryParameters: queryParams),
       headers: {
         "Accept": "application/json",
@@ -112,7 +112,7 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
       Uri(
           scheme: 'http',
           host: "localhost",
-          path: "/api/fetchcollegeinfo.php",
+          path: "/hteapi/fetchcollegeinfo.php",
           queryParameters: queryParams),
       headers: {
         "Accept": "application/json",
