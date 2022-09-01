@@ -302,7 +302,7 @@ Future<dynamic> fetchStudentCountsForGivenDeptCollege(
   }
 }
 
-Future<dynamic> fetchCourseInfoForCollege(int collegeId) async {
+Future<dynamic> fetchCourseDataForCollege(int collegeId) async {
   try {
     Map<String, dynamic> body = {
       "college": collegeId,
@@ -324,7 +324,7 @@ Future<dynamic> fetchCourseInfoForCollege(int collegeId) async {
 
     if (response.statusCode == 200) {
       if (kDebugMode) {
-        log('colelge dept');
+        log('college course');
         log(response.body);
       }
 
@@ -333,15 +333,11 @@ Future<dynamic> fetchCourseInfoForCollege(int collegeId) async {
       if (json['message'].toString().toLowerCase() == 'success') {
         var data = json['data'];
         var collegeDP = json['dp'];
-        var record = [];
 
         if (data != null && data.isNotEmpty) {
-          data.forEach((element) {
-            record.add(element[0]);
-          });
           return {
             'dp': collegeDP,
-            'data': record,
+            'data': data,
           };
         } else {
           return null;
