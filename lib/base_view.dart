@@ -115,57 +115,57 @@ class _BaseViewState extends State<BaseView> {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Navigator.of(context)
-                    .pushNamed(ScreenAttendancePercentages.routeName);
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.30 * 0.50,
-                alignment: Alignment.center,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                ),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 3.0,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 134, 11, 178),
-                  borderRadius: BorderRadius.circular(14.0),
-                ),
-                child: const Text(
-                  "Attendance",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.30 * 0.50,
-                alignment: Alignment.center,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                ),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 3.0,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 134, 11, 178),
-                  borderRadius: BorderRadius.circular(14.0),
-                ),
-                child: const Text(
-                  "Performance",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.of(context)
+            //         .pushNamed(ScreenAttendancePercentages.routeName);
+            //   },
+            //   child: Container(
+            //     width: MediaQuery.of(context).size.width * 0.30 * 0.50,
+            //     alignment: Alignment.center,
+            //     margin: const EdgeInsets.symmetric(
+            //       vertical: 8.0,
+            //     ),
+            //     padding: const EdgeInsets.symmetric(
+            //       vertical: 8.0,
+            //       horizontal: 3.0,
+            //     ),
+            //     decoration: BoxDecoration(
+            //       color: const Color.fromARGB(255, 134, 11, 178),
+            //       borderRadius: BorderRadius.circular(14.0),
+            //     ),
+            //     child: const Text(
+            //       "Attendance",
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // InkWell(
+            //   onTap: () {},
+            //   child: Container(
+            //     width: MediaQuery.of(context).size.width * 0.30 * 0.50,
+            //     alignment: Alignment.center,
+            //     margin: const EdgeInsets.symmetric(
+            //       vertical: 8.0,
+            //     ),
+            //     padding: const EdgeInsets.symmetric(
+            //       vertical: 8.0,
+            //       horizontal: 3.0,
+            //     ),
+            //     decoration: BoxDecoration(
+            //       color: const Color.fromARGB(255, 134, 11, 178),
+            //       borderRadius: BorderRadius.circular(14.0),
+            //     ),
+            //     child: const Text(
+            //       "Performance",
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
