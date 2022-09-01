@@ -201,11 +201,11 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
   }
 }
 
-Future<dynamic> fetchDeptInfoForCollege(int collegeId) async {
+Future<dynamic> fetchDeptsForCollege(int collegeId) async {
   try {
     Map<String, dynamic> body = {
       "college": collegeId,
-      "permit": "deptinfo",
+      "permit": "deptIds",
     };
     var requestBody = jsonEncode(body);
 
@@ -213,7 +213,7 @@ Future<dynamic> fetchDeptInfoForCollege(int collegeId) async {
       log("college dept requyest sending");
     }
     var response = await http.post(
-      Uri.parse("http://localhost/hteapi/fetchdeptcollege.php"),
+      Uri.parse("http://localhost/hteapi/fetchteachingstaffselectors.php"),
       headers: {'Content-Type': 'application/json'},
       body: requestBody,
     );
@@ -234,14 +234,9 @@ Future<dynamic> fetchDeptInfoForCollege(int collegeId) async {
         var collegeDP = json['dp'];
 
         if (data != null && data.isNotEmpty) {
-          var record = [];
-
-          data.forEach((element) {
-            record.add(element[0]);
-          });
           return {
             'dp': collegeDP,
-            'data': record,
+            'data': data,
           };
         } else {
           return null;
@@ -255,6 +250,55 @@ Future<dynamic> fetchDeptInfoForCollege(int collegeId) async {
       log(e.toString());
     }
     return null;
+  }
+}
+
+Future<dynamic> fetchStudentCountsForGivenDeptCollege(
+    int collegeId, String deptName) async {
+  try {
+    var requestBody = jsonEncode(<String, dynamic>{
+      "permit": "deptinfo",
+      "collegeId": collegeId,
+      "deptName": deptName,
+    });
+
+    if (kDebugMode) {
+      log("college dept student counts sending");
+      log(requestBody);
+    }
+    var response = await http.post(
+      Uri.parse("http://localhost/hteapi/fetchdeptcollege.php"),
+      headers: {'Content-Type': 'application/json'},
+      body: requestBody,
+    );
+    if (kDebugMode) {
+      log("college dept student counts receiving");
+    }
+
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        log('college dept student counts');
+        log(response.body);
+      }
+
+      var json = jsonDecode(response.body);
+
+      if (json['message'].toString().toLowerCase() == 'success') {
+        var data = json['data'];
+
+        if (data != null && data.isNotEmpty) {
+          return data;
+        } else {
+          return null;
+        }
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      return null;
+    }
   }
 }
 
