@@ -200,3 +200,55 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
     return null;
   }
 }
+
+Future<dynamic> fetchDeptInfoForCollege(int collegeId) async {
+  try {
+    Map<String, dynamic> body = {
+      "college": collegeId,
+      "permit": "deptinfo",
+    };
+    var requestBody = jsonEncode(body);
+
+    if (kDebugMode) {
+      log("college dept requyest sending");
+    }
+    var response = await http.post(
+      Uri.parse("http://localhost/hteapi/fetchdeptcollege.php"),
+      headers: {'Content-Type': 'application/json'},
+      body: requestBody,
+    );
+    if (kDebugMode) {
+      log("college dept requyest receiving");
+    }
+
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        log('colelge dept');
+        log(response.body);
+      }
+
+      var json = jsonDecode(response.body);
+
+      if (json['message'].toString().toLowerCase() == 'success') {
+        var data = json['data'];
+        var collegeDP = json['dp'];
+
+        if (data != null && data.isNotEmpty) {
+          return {
+            'dp': collegeDP,
+            'data': data,
+          };
+        } else {
+          return null;
+        }
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+    return null;
+  }
+}

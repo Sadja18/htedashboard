@@ -7,6 +7,9 @@ import './screens/details.dart';
 import './screens/summary.dart';
 import './screens/gender_parity_index_screen.dart';
 import './screens/attendance.dart';
+import './screens/content/a_dept_screen.dart';
+import './screens/content/b_course_screen.dart';
+import './screens/content/c_col_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'HTE',
       theme: ThemeData(
         textTheme: Theme.of(context).textTheme.apply(
@@ -37,6 +41,7 @@ class MyApp extends StatelessWidget {
         GPIScreen.routeName: (ctx) => GPIScreen(),
         ScreenAttendancePercentages.routeName: (ctx) =>
             ScreenAttendancePercentages(),
+        ScreenCollegeDeptInfo.routeName: (ctx) => ScreenCollegeDeptInfo(),
       },
       // debugShowCheckedModeBanner: false,
     );

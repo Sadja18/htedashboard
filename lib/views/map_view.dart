@@ -2,12 +2,13 @@
 
 import 'dart:developer';
 
+import 'package:dashboard/models/local_data.dart';
+import 'package:dashboard/screens/content/a_dept_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ltlng;
 
-import '../models/local_data.dart' as localData;
 // import '../api/read_base_info.dart';
 import '../api/fetches.dart';
 
@@ -186,7 +187,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
     ltlng.LatLng(20.7385856712654, 71.00427697885928),
   ];
 
-  Widget collegeDetailWidget(data) {
+  Widget collegeDetailWidget(String collegeName, data) {
     return Container(
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
@@ -299,11 +300,25 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                   TableCell(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['deptsCount'].toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
+                      child: InkWell(
+                        onTap: () {
+                          // show departments in new screen
+
+                          var collegeId = data['collegeId'];
+                          var deptIds = data['depts'];
+                          Navigator.pushNamed(
+                              context, ScreenCollegeDeptInfo.routeName,
+                              arguments: {
+                                'collegeId': collegeId,
+                                'collegeName': collegeName,
+                              });
+                        },
+                        child: Text(
+                          data['deptsCount'].toString(),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
                       ),
                     ),
                   ),
@@ -325,11 +340,16 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                   TableCell(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['coursesCount'].toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
+                      child: InkWell(
+                        onTap: () {
+                          // show courses in new screen
+                        },
+                        child: Text(
+                          data['coursesCount'].toString(),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
                       ),
                     ),
                   ),
@@ -437,7 +457,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                 width: MediaQuery.of(context).size.width * 0.40,
                 height: MediaQuery.of(context).size.height * 0.45,
                 alignment: Alignment.center,
-                child: collegeDetailWidget(data),
+                child: collegeDetailWidget(collegeName, data),
               ),
               actions: [
                 InkWell(
