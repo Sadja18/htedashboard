@@ -2,8 +2,6 @@
 
 import 'dart:developer';
 
-import 'package:dashboard/models/local_data.dart';
-import 'package:dashboard/screens/content/a_dept_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -11,6 +9,10 @@ import 'package:latlong2/latlong.dart' as ltlng;
 
 // import '../api/read_base_info.dart';
 import '../api/fetches.dart';
+import '../screens/content/b_course_screen.dart';
+import '../screens/content/a_dept_screen.dart';
+import '../screens/content/d_teaching_staff_screen.dart';
+import '../screens/content/e_ntstaff_screen.dart';
 
 var myMapboxToken =
     "pk.eyJ1Ijoic2FkamEiLCJhIjoiY2w1dXg5N29yMDQ2cjNldDJmcG1zYmc5ZCJ9.z_QoEiKHhuWFyXBj4jLuzQ";
@@ -305,7 +307,6 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           // show departments in new screen
 
                           var collegeId = data['collegeId'];
-                          var deptIds = data['depts'];
                           Navigator.pushNamed(
                               context, ScreenCollegeDeptInfo.routeName,
                               arguments: {
@@ -342,7 +343,14 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          // show courses in new screen
+                          var collegeId = data['collegeId'];
+
+                          Navigator.pushNamed(
+                              context, ScreenCollegeCourseInfo.routeName,
+                              arguments: {
+                                'collegeId': collegeId,
+                                'collegeName': collegeName,
+                              });
                         },
                         child: Text(
                           data['coursesCount'].toString(),
@@ -371,11 +379,24 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                   TableCell(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['teachersCount'].toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
+                      child: InkWell(
+                        onTap: () {
+                          int collegeId = data['collegeId'];
+                          Navigator.pushNamed(
+                            context,
+                            ScreenTeachingStaffInfo.routename,
+                            arguments: {
+                              'collegeId': collegeId,
+                              'collegeName': collegeName,
+                            },
+                          );
+                        },
+                        child: Text(
+                          data['teachersCount'].toString(),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
                       ),
                     ),
                   ),
@@ -397,11 +418,24 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                   TableCell(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['staffsCount'].toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
+                      child: InkWell(
+                        onTap: () {
+                          int collegeId = data['collegeId'];
+                          Navigator.pushNamed(
+                            context,
+                            ScreenNtStaff.routeName,
+                            arguments: {
+                              'collegeId': collegeId,
+                              'collegeName': collegeName,
+                            },
+                          );
+                        },
+                        child: Text(
+                          data['staffsCount'].toString(),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
                       ),
                     ),
                   ),

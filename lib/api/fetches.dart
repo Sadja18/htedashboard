@@ -234,10 +234,119 @@ Future<dynamic> fetchDeptInfoForCollege(int collegeId) async {
         var collegeDP = json['dp'];
 
         if (data != null && data.isNotEmpty) {
+          var record = [];
+
+          data.forEach((element) {
+            record.add(element[0]);
+          });
           return {
             'dp': collegeDP,
-            'data': data,
+            'data': record,
           };
+        } else {
+          return null;
+        }
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+    return null;
+  }
+}
+
+Future<dynamic> fetchCourseInfoForCollege(int collegeId) async {
+  try {
+    Map<String, dynamic> body = {
+      "college": collegeId,
+      "permit": "courseInfo",
+    };
+    var requestBody = jsonEncode(body);
+
+    if (kDebugMode) {
+      log("college course requyest sending");
+    }
+    var response = await http.post(
+      Uri.parse("http://localhost/hteapi/fetchcoursecollege.php"),
+      headers: {'Content-Type': 'application/json'},
+      body: requestBody,
+    );
+    if (kDebugMode) {
+      log("college course request receiving");
+    }
+
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        log('colelge dept');
+        log(response.body);
+      }
+
+      var json = jsonDecode(response.body);
+
+      if (json['message'].toString().toLowerCase() == 'success') {
+        var data = json['data'];
+        var collegeDP = json['dp'];
+        var record = [];
+
+        if (data != null && data.isNotEmpty) {
+          data.forEach((element) {
+            record.add(element[0]);
+          });
+          return {
+            'dp': collegeDP,
+            'data': record,
+          };
+        } else {
+          return null;
+        }
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+    return null;
+  }
+}
+
+Future<dynamic> fetchTeachingStaffSelectors(int collegeId) async {
+  try {
+    Map<String, dynamic> body = {
+      "college": collegeId,
+      "permit": "courseInfo",
+    };
+    var requestBody = jsonEncode(body);
+
+    if (kDebugMode) {
+      log("college selectors request sending");
+    }
+    var response = await http.post(
+      Uri.parse("http://localhost/hteapi/fetchteachingstaffseletors.php"),
+      headers: {'Content-Type': 'application/json'},
+      body: requestBody,
+    );
+    if (kDebugMode) {
+      log("college selectors request receiving");
+    }
+
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        log('college selectors');
+        log(response.body);
+      }
+
+      var json = jsonDecode(response.body);
+
+      if (json['message'].toString().toLowerCase() == 'success') {
+        var data = json['data'];
+
+        if (data != null && data.isNotEmpty) {
+          return data;
         } else {
           return null;
         }

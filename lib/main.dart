@@ -10,6 +10,8 @@ import './screens/attendance.dart';
 import './screens/content/a_dept_screen.dart';
 import './screens/content/b_course_screen.dart';
 import './screens/content/c_col_screen.dart';
+import './screens/content/d_teaching_staff_screen.dart';
+import './screens/content/e_ntstaff_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,6 +44,9 @@ class MyApp extends StatelessWidget {
         ScreenAttendancePercentages.routeName: (ctx) =>
             ScreenAttendancePercentages(),
         ScreenCollegeDeptInfo.routeName: (ctx) => ScreenCollegeDeptInfo(),
+        ScreenCollegeCourseInfo.routeName: (ctx) => ScreenCollegeCourseInfo(),
+        ScreenTeachingStaffInfo.routename: (ctx) => ScreenTeachingStaffInfo(),
+        ScreenNtStaff.routeName: (ctx) => ScreenNtStaff(),
       },
       // debugShowCheckedModeBanner: false,
     );
