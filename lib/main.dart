@@ -9,7 +9,6 @@ import './screens/gender_parity_index_screen.dart';
 import './screens/attendance.dart';
 import './screens/content/a_dept_screen.dart';
 import './screens/content/b_course_screen.dart';
-import './screens/content/c_col_screen.dart';
 import './screens/content/d_teaching_staff_screen.dart';
 import './screens/content/e_ntstaff_screen.dart';
 
