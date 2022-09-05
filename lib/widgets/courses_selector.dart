@@ -49,6 +49,8 @@ class _SelectorCourseDropdownState extends State<SelectorCourseDropdown> {
     return Container(
       width: MediaQuery.of(context).size.width * 0.80,
       height: MediaQuery.of(context).size.height * 0.10,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Text(widget.courseNames.toString()),

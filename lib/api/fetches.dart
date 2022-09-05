@@ -4,11 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import '../models/urls.dart';
 
 Future<dynamic> fetchSelectorBaseRecords() async {
-  if (kDebugMode) {
-    log('seletiob ');
-  }
   try {
     if (kDebugMode) {
       log('sending');
@@ -17,8 +15,8 @@ Future<dynamic> fetchSelectorBaseRecords() async {
     var response = await http.get(
       Uri(
           scheme: 'http',
-          host: "localhost",
-          path: "/hteapi/fetchdcvc.php",
+          host: baseURLUnschemed,
+          path: "$endpointStart$selectorBaseRecords",
           queryParameters: queryParams),
       headers: {
         "Accept": "application/json",
@@ -112,7 +110,7 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
       Uri(
           scheme: 'http',
           host: "localhost",
-          path: "/hteapi/fetchcollegeinfo.php",
+          path: "$endpointStart$collegeInfoURI",
           queryParameters: queryParams),
       headers: {
         "Accept": "application/json",
@@ -213,7 +211,7 @@ Future<dynamic> fetchDeptsForCollege(int collegeId) async {
       log("college dept requyest sending");
     }
     var response = await http.post(
-      Uri.parse("http://localhost/hteapi/fetchteachingstaffselectors.php"),
+      Uri.parse("$baseURLSchemed$endpointStart$deptsForCollegeURI"),
       headers: {'Content-Type': 'application/json'},
       body: requestBody,
     );
@@ -267,7 +265,7 @@ Future<dynamic> fetchStudentCountsForGivenDeptCollege(
       log(requestBody);
     }
     var response = await http.post(
-      Uri.parse("http://localhost/hteapi/fetchdeptcollege.php"),
+      Uri.parse("$baseURLSchemed$endpointStart$studentCountsForDeptCollegeURI"),
       headers: {'Content-Type': 'application/json'},
       body: requestBody,
     );
@@ -314,7 +312,7 @@ Future<dynamic> fetchCourseDataForCollege(int collegeId) async {
       log("college course requyest sending");
     }
     var response = await http.post(
-      Uri.parse("http://localhost/hteapi/fetchcoursecollege.php"),
+      Uri.parse("$baseURLSchemed$endpointStart$courseForCollegeURI"),
       headers: {'Content-Type': 'application/json'},
       body: requestBody,
     );
@@ -366,7 +364,7 @@ Future<dynamic> fetchTeachingStaffSelectors(int collegeId) async {
       log("college selectors request sending");
     }
     var response = await http.post(
-      Uri.parse("http://localhost/hteapi/fetchteachingstaffseletors.php"),
+      Uri.parse("$baseURLSchemed$endpointStart$teachingStaffSelectorsURI"),
       headers: {'Content-Type': 'application/json'},
       body: requestBody,
     );
@@ -399,5 +397,67 @@ Future<dynamic> fetchTeachingStaffSelectors(int collegeId) async {
       log(e.toString());
     }
     return null;
+  }
+}
+
+Future<dynamic> fetchCollegeProfilePic(int collegeId) async {
+  try {
+    Map<String, dynamic> body = {
+      "college": collegeId.toString(),
+      "permit": "getDp",
+    };
+    if (kDebugMode) {
+      log("college profile pic sending");
+      // log(body.toString());
+    }
+    var response = await http.get(
+      Uri(
+          scheme: 'http',
+          host: baseURLUnschemed,
+          path: "$endpointStart$collegeProfilePic",
+          queryParameters: body),
+      headers: {
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+    );
+    if (kDebugMode) {
+      log("college profile pic receiving");
+    }
+
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        log('college profile pic');
+        // log(response.body.substring(0, 8));
+      }
+
+      var json = jsonDecode(response.body);
+
+      if (json['message'].toString().toLowerCase() == 'success') {
+        var data = json['data'];
+
+        if (data != null && data.isNotEmpty) {
+          return data;
+        } else {
+          return null;
+        }
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+  }
+}
+
+Future<dynamic> fetchStudentCountsForGivenCourseCollege(
+    collegeId, courseName) async {
+  try {} catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+      return null;
+    }
   }
 }

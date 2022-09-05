@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import './views/map_view.dart';
-import './screens/details.dart';
 import './screens/summary.dart';
 import './screens/gender_parity_index_screen.dart';
 import './screens/attendance.dart';

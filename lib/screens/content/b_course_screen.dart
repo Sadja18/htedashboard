@@ -72,16 +72,19 @@ class _ScreenCollegeCourseInfoState extends State<ScreenCollegeCourseInfo> {
   }
 
   void callbackCourseSelector(String courseName, data, collegeId) async {
-    // var information =
-    //     await fetchStudentCountsForGivenCourseCollege(collegeId, courseName);
+    if (kDebugMode) {
+      log("parent log $courseName $collegeId");
+    }
+    var information =
+        await fetchStudentCountsForGivenCourseCollege(collegeId, courseName);
 
-    // setState(() {
-    //   selectedCourseName = courseName;
-    //   totalStudents = information['total'];
-    //   boys = information['boys'];
-    //   girls = information['girls'];
-    //   others = information['trans'];
-    // });
+    setState(() {
+      selectedCourseName = courseName;
+      totalStudents = information['total'];
+      boys = information['boys'];
+      girls = information['girls'];
+      others = information['trans'];
+    });
   }
 
   @override

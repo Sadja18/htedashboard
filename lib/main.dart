@@ -9,6 +9,7 @@ import './screens/gender_parity_index_screen.dart';
 import './screens/attendance.dart';
 import './screens/content/a_dept_screen.dart';
 import './screens/content/b_course_screen.dart';
+import './screens/content/c_student_dropout.dart';
 import './screens/content/d_teaching_staff_screen.dart';
 import './screens/content/e_ntstaff_screen.dart';
 
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         ScreenCollegeCourseInfo.routeName: (ctx) => ScreenCollegeCourseInfo(),
         ScreenTeachingStaffInfo.routename: (ctx) => ScreenTeachingStaffInfo(),
         ScreenNtStaff.routeName: (ctx) => ScreenNtStaff(),
+        ScreenStudentDropoutInfo.routeName: (ctx) => ScreenStudentDropoutInfo(),
       },
       // debugShowCheckedModeBanner: false,
     );

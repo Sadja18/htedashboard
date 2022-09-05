@@ -1,7 +1,9 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dashboard/widgets/avatar_generator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -11,6 +13,7 @@ import 'package:latlong2/latlong.dart' as ltlng;
 import '../api/fetches.dart';
 import '../screens/content/b_course_screen.dart';
 import '../screens/content/a_dept_screen.dart';
+import '../screens/content/c_student_dropout.dart';
 import '../screens/content/d_teaching_staff_screen.dart';
 import '../screens/content/e_ntstaff_screen.dart';
 
@@ -194,278 +197,339 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          45.0,
+        ),
+      ),
       padding: const EdgeInsets.all(
         8.0,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Table(
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              columnWidths: const {
+                0: FractionColumnWidth(0.50),
+                1: FractionColumnWidth(0.50),
+              },
+              children: [
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "HoI: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          data['HoI'],
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Affliated To: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          data['affliatedTo'].toString(),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Email: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          data['email'].toString(),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Number of Departments: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            // show departments in new screen
+
+                            var collegeId = data['collegeId'];
+                            Navigator.pushNamed(
+                                context, ScreenCollegeDeptInfo.routeName,
+                                arguments: {
+                                  'collegeId': collegeId,
+                                  'collegeName': collegeName,
+                                });
+                          },
+                          child: Text(
+                            data['deptsCount'].toString(),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Number of Courses: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            var collegeId = data['collegeId'];
+
+                            Navigator.pushNamed(
+                                context, ScreenCollegeCourseInfo.routeName,
+                                arguments: {
+                                  'collegeId': collegeId,
+                                  'collegeName': collegeName,
+                                });
+                          },
+                          child: Text(
+                            data['coursesCount'].toString(),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Number of Teaching Staff: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            int collegeId = data['collegeId'];
+                            Navigator.pushNamed(
+                              context,
+                              ScreenTeachingStaffInfo.routename,
+                              arguments: {
+                                'collegeId': collegeId,
+                                'collegeName': collegeName,
+                              },
+                            );
+                          },
+                          child: Text(
+                            data['teachersCount'].toString(),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Number of Non-Teaching Staff: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            int collegeId = data['collegeId'];
+                            Navigator.pushNamed(
+                              context,
+                              ScreenNtStaff.routeName,
+                              arguments: {
+                                'collegeId': collegeId,
+                                'collegeName': collegeName,
+                              },
+                            );
+                          },
+                          child: Text(
+                            data['staffsCount'].toString(),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Number of Students: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            int collegeId = data['collegeId'];
+
+                            Navigator.pushNamed(
+                              context,
+                              ScreenStudentDropoutInfo.routeName,
+                              arguments: {
+                                'collegeId': collegeId,
+                                'collegeName': collegeName,
+                              },
+                            );
+                          },
+                          child: Text(
+                            data['studentsCount'].toString(),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget titleWidget(int collegeId, String collegeName) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.40,
+      height: MediaQuery.of(context).size.height * 0.20,
+      decoration: BoxDecoration(
+        color: Colors.blue.shade600,
+      ),
+      alignment: Alignment.center,
+      child: Table(
+        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+        columnWidths: const {
+          0: FractionColumnWidth(0.30),
+          1: FractionColumnWidth(0.70),
+        },
         children: [
-          Table(
-            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-            columnWidths: const {
-              0: FractionColumnWidth(0.50),
-              1: FractionColumnWidth(0.50),
-            },
+          TableRow(
             children: [
-              TableRow(
-                children: [
-                  const TableCell(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "HoI: ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['HoI'],
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                ],
+              TableCell(
+                child: AvatarBuilder(collegeId: collegeId),
               ),
-              TableRow(
-                children: [
-                  const TableCell(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Affliated To: ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
+              TableCell(
+                child: Center(
+                  child: Text(
+                    collegeName,
+                    softWrap: true,
+                    maxLines: 4,
+                    style: const TextStyle(
+                      color: Colors.white,
                     ),
                   ),
-                  TableCell(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['affliatedTo'].toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                children: [
-                  const TableCell(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Email: ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['email'].toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                children: [
-                  const TableCell(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Number of Departments: ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          // show departments in new screen
-
-                          var collegeId = data['collegeId'];
-                          Navigator.pushNamed(
-                              context, ScreenCollegeDeptInfo.routeName,
-                              arguments: {
-                                'collegeId': collegeId,
-                                'collegeName': collegeName,
-                              });
-                        },
-                        child: Text(
-                          data['deptsCount'].toString(),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                children: [
-                  const TableCell(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Number of Courses: ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          var collegeId = data['collegeId'];
-
-                          Navigator.pushNamed(
-                              context, ScreenCollegeCourseInfo.routeName,
-                              arguments: {
-                                'collegeId': collegeId,
-                                'collegeName': collegeName,
-                              });
-                        },
-                        child: Text(
-                          data['coursesCount'].toString(),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                children: [
-                  const TableCell(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Number of Teaching Staff: ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          int collegeId = data['collegeId'];
-                          Navigator.pushNamed(
-                            context,
-                            ScreenTeachingStaffInfo.routename,
-                            arguments: {
-                              'collegeId': collegeId,
-                              'collegeName': collegeName,
-                            },
-                          );
-                        },
-                        child: Text(
-                          data['teachersCount'].toString(),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                children: [
-                  const TableCell(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Number of Non-Teaching Staff: ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          int collegeId = data['collegeId'];
-                          Navigator.pushNamed(
-                            context,
-                            ScreenNtStaff.routeName,
-                            arguments: {
-                              'collegeId': collegeId,
-                              'collegeName': collegeName,
-                            },
-                          );
-                        },
-                        child: Text(
-                          data['staffsCount'].toString(),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                children: [
-                  const TableCell(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Number of Students: ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['studentsCount'].toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
@@ -483,13 +547,16 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
           barrierDismissible: false,
           builder: (ctx) {
             return AlertDialog(
-              title: Container(
-                alignment: Alignment.center,
-                child: Text(collegeName),
-              ),
+              titlePadding: const EdgeInsets.all(0),
+              title: titleWidget(data['collegeId'], collegeName),
               content: Container(
                 width: MediaQuery.of(context).size.width * 0.40,
                 height: MediaQuery.of(context).size.height * 0.45,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    45.0,
+                  ),
+                ),
                 alignment: Alignment.center,
                 child: collegeDetailWidget(collegeName, data),
               ),
@@ -959,10 +1026,6 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
     );
   }
 
-  void dataLoader() async {
-    // await readCoordinates();
-  }
-
   @override
   void initState() {
     // dataLoader();
@@ -977,5 +1040,58 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
       height: MediaQuery.of(context).size.height,
       child: getMap(),
     );
+  }
+}
+
+class AvatarBuilder extends StatelessWidget {
+  final int collegeId;
+  const AvatarBuilder({
+    Key? key,
+    required this.collegeId,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: fetchCollegeProfilePic(collegeId),
+        builder: (BuildContext ctx1, AsyncSnapshot shot) {
+          if (shot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: SizedBox(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            );
+          } else {
+            if (shot.hasData && shot.data != null) {
+              if (kDebugMode) {
+                log("sdfbjwerfsjrfvbkrfvbfk");
+                // log(shot.data.toString());
+              }
+              return Container(
+                width: MediaQuery.of(context).size.width * 0.40,
+                height: MediaQuery.of(context).size.height * 0.20,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: ClipOval(
+                  child: Image(
+                    image: Image.memory(
+                            const Base64Decoder().convert(shot.data.toString()))
+                        .image,
+                    fit: BoxFit.fill,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                  ),
+                ),
+              );
+            } else {
+              return const SizedBox(
+                height: 0,
+                width: 0,
+              );
+            }
+          }
+        });
   }
 }
