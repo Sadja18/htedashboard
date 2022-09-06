@@ -205,7 +205,7 @@ Future<dynamic> fetchDeptsForCollege(int collegeId) async {
   try {
     Map<String, dynamic> body = {
       "college": collegeId,
-      "permit": "deptIds",
+      "permit": "deptinfo",
     };
     var requestBody = jsonEncode(body);
 
@@ -213,7 +213,7 @@ Future<dynamic> fetchDeptsForCollege(int collegeId) async {
       log("college dept requyest sending");
     }
     var response = await http.post(
-      Uri.parse("$baseURLSchemed$endpointStart$deptsForCollegeURI"),
+      Uri.parse("$baseURLSchemed$endpointStart$staffCountsForDeptCollegeURI"),
       headers: {'Content-Type': 'application/json'},
       body: requestBody,
     );
@@ -224,60 +224,6 @@ Future<dynamic> fetchDeptsForCollege(int collegeId) async {
     if (response.statusCode == 200) {
       if (kDebugMode) {
         log('colelge dept');
-        log(response.body);
-      }
-
-      var json = jsonDecode(response.body);
-
-      if (json['message'].toString().toLowerCase() == 'success') {
-        var data = json['data'];
-        var collegeDP = json['dp'];
-
-        if (data != null && data.isNotEmpty) {
-          return {
-            'dp': collegeDP,
-            'data': data,
-          };
-        } else {
-          return null;
-        }
-      }
-    } else {
-      return null;
-    }
-  } catch (e) {
-    if (kDebugMode) {
-      log(e.toString());
-    }
-    return null;
-  }
-}
-
-Future<dynamic> fetchStudentCountsForGivenDeptCollege(
-    int collegeId, String deptName) async {
-  try {
-    var requestBody = jsonEncode(<String, dynamic>{
-      "permit": "deptinfo",
-      "collegeId": collegeId,
-      "deptName": deptName,
-    });
-
-    if (kDebugMode) {
-      log("college dept student counts sending");
-      log(requestBody);
-    }
-    var response = await http.post(
-      Uri.parse("$baseURLSchemed$endpointStart$studentCountsForDeptCollegeURI"),
-      headers: {'Content-Type': 'application/json'},
-      body: requestBody,
-    );
-    if (kDebugMode) {
-      log("college dept student counts receiving");
-    }
-
-    if (response.statusCode == 200) {
-      if (kDebugMode) {
-        log('college dept student counts');
         log(response.body);
       }
 
@@ -297,8 +243,9 @@ Future<dynamic> fetchStudentCountsForGivenDeptCollege(
     }
   } catch (e) {
     if (kDebugMode) {
-      return null;
+      log(e.toString());
     }
+    return null;
   }
 }
 
