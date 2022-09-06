@@ -114,12 +114,15 @@ class _ScreenCollegeCourseInfoState extends State<ScreenCollegeCourseInfo> {
             return Container(
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.95,
+              height: MediaQuery.of(context).size.height * 0.92,
               margin: const EdgeInsets.symmetric(
                 horizontal: 10.0,
               ),
+              padding: const EdgeInsets.only(
+                left: 19.0,
+              ),
               decoration: const BoxDecoration(
-                  // color: Color.fromARGB(255, 255, 203, 200),
+                  // color: Color.fromARGB(255, 240, 90, 82),
                   ),
               child: CouseInfoStickyHeader(courseInfo: data),
             );
@@ -165,6 +168,8 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
   ScrollController horizontalBodyController =
       ScrollController(initialScrollOffset: 0.0);
 
+  var cellColor = Color.fromARGB(255, 187, 238, 231);
+
   Widget colBuilder(colIndex) {
     switch (colIndex) {
       case 0:
@@ -186,14 +191,7 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
         );
       case 2:
-        return const Text(
-          "Has Dept",
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-        );
+        return const Text("");
       case 3:
         return const Text(
           "Department",
@@ -282,15 +280,7 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           ),
         );
       case 2:
-        return Text(
-          widget.courseInfo[rowIndex]['courseNoDept'] == true ? 'Yes' : 'No',
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.normal,
-          ),
-        );
+        return const Text("");
       case 3:
         return Text(
           widget.courseInfo[rowIndex]['courseDept'] != false
@@ -354,18 +344,18 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
     return StickyHeadersTable(
       cellDimensions: CellDimensions.variableColumnWidthAndRowHeight(
         columnWidths: [
-          MediaQuery.of(context).size.width * 0.10,
-          MediaQuery.of(context).size.width * 0.10,
-          MediaQuery.of(context).size.width * 0.10,
-          MediaQuery.of(context).size.width * 0.10,
-          MediaQuery.of(context).size.width * 0.10,
-          MediaQuery.of(context).size.width * 0.10,
-          MediaQuery.of(context).size.width * 0.10,
-          MediaQuery.of(context).size.width * 0.10,
+          MediaQuery.of(context).size.width * 0.12,
+          MediaQuery.of(context).size.width * 0.11,
+          MediaQuery.of(context).size.width * 0,
+          MediaQuery.of(context).size.width * 0.12,
+          MediaQuery.of(context).size.width * 0.11,
+          MediaQuery.of(context).size.width * 0.11,
+          MediaQuery.of(context).size.width * 0.11,
+          MediaQuery.of(context).size.width * 0.11,
         ],
         rowHeights: List<double>.generate(widget.courseInfo.length,
             (int index) => MediaQuery.of(context).size.height * 0.10),
-        stickyLegendWidth: MediaQuery.of(context).size.width * 0.20,
+        stickyLegendWidth: MediaQuery.of(context).size.width * 0.18,
         stickyLegendHeight: MediaQuery.of(context).size.height * 0.10,
       ),
       initialScrollOffsetX: 0.0,
@@ -390,7 +380,7 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: Colors.orange.shade200,
+            color: cellColor,
           ),
           child: Center(child: rowBuilder(rowIndex)),
         );
@@ -401,7 +391,7 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: Colors.orange.shade200,
+            color: cellColor,
           ),
           child: Center(
             child: contentBuilder(rowIndex, colIndex),
