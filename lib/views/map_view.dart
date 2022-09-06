@@ -499,7 +499,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
     );
   }
 
-  Widget titleWidget(int collegeId, String collegeName) {
+  Widget titleWidget(String profilePic, String collegeName) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.40,
       height: MediaQuery.of(context).size.height * 0.20,
@@ -517,7 +517,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
           TableRow(
             children: [
               TableCell(
-                child: AvatarBuilder(collegeId: collegeId),
+                child: AvatarBuilder(profilePic: profilePic),
               ),
               TableCell(
                 child: Center(
@@ -548,7 +548,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
           builder: (ctx) {
             return AlertDialog(
               titlePadding: const EdgeInsets.all(0),
-              title: titleWidget(data['collegeId'], collegeName),
+              title: titleWidget(data['profilePic'], collegeName),
               content: Container(
                 width: MediaQuery.of(context).size.width * 0.40,
                 height: MediaQuery.of(context).size.height * 0.45,
@@ -1044,54 +1044,31 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
 }
 
 class AvatarBuilder extends StatelessWidget {
-  final int collegeId;
+  final String profilePic;
   const AvatarBuilder({
     Key? key,
-    required this.collegeId,
+    required this.profilePic,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: fetchCollegeProfilePic(collegeId),
-        builder: (BuildContext ctx1, AsyncSnapshot shot) {
-          if (shot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: SizedBox(
-                child: CircularProgressIndicator.adaptive(),
-              ),
-            );
-          } else {
-            if (shot.hasData && shot.data != null) {
-              if (kDebugMode) {
-                log("sdfbjwerfsjrfvbkrfvbfk");
-                // log(shot.data.toString());
-              }
-              return Container(
-                width: MediaQuery.of(context).size.width * 0.40,
-                height: MediaQuery.of(context).size.height * 0.20,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: ClipOval(
-                  child: Image(
-                    image: Image.memory(
-                            const Base64Decoder().convert(shot.data.toString()))
-                        .image,
-                    fit: BoxFit.fill,
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                  ),
-                ),
-              );
-            } else {
-              return const SizedBox(
-                height: 0,
-                width: 0,
-              );
-            }
-          }
-        });
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.40,
+      height: MediaQuery.of(context).size.height * 0.20,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+      child: ClipOval(
+        child: Image(
+          image:
+              Image.memory(const Base64Decoder().convert(profilePic.toString()))
+                  .image,
+          fit: BoxFit.fill,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+        ),
+      ),
+    );
   }
 }

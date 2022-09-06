@@ -2,10 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:table_sticky_headers/table_sticky_headers.dart';
 
-import '../../widgets/avatar_generator.dart';
 import '../../api/fetches.dart';
 
 class ScreenCollegeCourseInfo extends StatefulWidget {
@@ -78,13 +76,13 @@ class _ScreenCollegeCourseInfoState extends State<ScreenCollegeCourseInfo> {
     var information =
         await fetchStudentCountsForGivenCourseCollege(collegeId, courseName);
 
-    setState(() {
-      selectedCourseName = courseName;
-      totalStudents = information['total'];
-      boys = information['boys'];
-      girls = information['girls'];
-      others = information['trans'];
-    });
+    // setState(() {
+    //   selectedCourseName = courseName;
+    //   totalStudents = information['total'];
+    //   boys = information['boys'];
+    //   girls = information['girls'];
+    //   others = information['trans'];
+    // });
   }
 
   @override
@@ -112,42 +110,18 @@ class _ScreenCollegeCourseInfoState extends State<ScreenCollegeCourseInfo> {
           } else if (snapshot.hasData &&
               snapshot.data != null &&
               snapshot.data.isNotEmpty) {
-            String profileImageString = snapshot.data['dp'].toString();
-            var data = snapshot.data['data'];
+            var data = snapshot.data;
             return Container(
               alignment: Alignment.center,
-              child: Column(
-                children: [
-                  AvatarGeneratorNewTwo(base64Code: profileImageString),
-                  Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width * 0.80,
-                    height: MediaQuery.of(context).size.height * 0.65,
-                    decoration: const BoxDecoration(
-                        // color: Color.fromARGB(255, 255, 203, 200),
-                        ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.40,
-                            height: MediaQuery.of(context).size.height * 0.08,
-                            child: DropdownCourseSelector(
-                              data: data,
-                              collegeId: collegeId,
-                              callbackCourseName: callbackCourseSelector,
-                              courseNames: courseNameProcessor(data),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.95,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 10.0,
               ),
+              decoration: const BoxDecoration(
+                  // color: Color.fromARGB(255, 255, 203, 200),
+                  ),
+              child: CouseInfoStickyHeader(courseInfo: data),
             );
           } else {
             return const SizedBox(
@@ -161,57 +135,295 @@ class _ScreenCollegeCourseInfoState extends State<ScreenCollegeCourseInfo> {
   }
 }
 
-class DropdownCourseSelector extends StatefulWidget {
-  final List data;
-  final List<String> courseNames;
-  final Function(String, List, int) callbackCourseName;
-  final int collegeId;
-  const DropdownCourseSelector({
+class CouseInfoStickyHeader extends StatefulWidget {
+  final List courseInfo;
+  const CouseInfoStickyHeader({
     Key? key,
-    required this.courseNames,
-    required this.callbackCourseName,
-    required this.collegeId,
-    required this.data,
+    required this.courseInfo,
   }) : super(key: key);
 
   @override
-  State<DropdownCourseSelector> createState() => _DropdownCourseSelectorState();
+  State<CouseInfoStickyHeader> createState() => _CouseInfoStickyHeaderState();
 }
 
-class _DropdownCourseSelectorState extends State<DropdownCourseSelector> {
-  late List<String> courseNames;
-  late String selectedOption;
+class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
+  ScrollControllers scrollControllers() {
+    return ScrollControllers(
+      verticalTitleController: verticalTitleController,
+      verticalBodyController: verticalBodyController,
+      horizontalTitleController: horizontalTitleController,
+      horizontalBodyController: horizontalBodyController,
+    );
+  }
 
-  @override
-  void initState() {
-    super.initState();
+  ScrollController verticalBodyController =
+      ScrollController(initialScrollOffset: 0.0);
+  ScrollController verticalTitleController =
+      ScrollController(initialScrollOffset: 0.0);
+  ScrollController horizontalTitleController =
+      ScrollController(initialScrollOffset: 0.0);
+  ScrollController horizontalBodyController =
+      ScrollController(initialScrollOffset: 0.0);
 
-    setState(() {
-      courseNames = widget.courseNames;
-      selectedOption = widget.courseNames[0];
-    });
+  Widget colBuilder(colIndex) {
+    switch (colIndex) {
+      case 0:
+        return const Text(
+          "Code",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        );
+      case 1:
+        return const Text(
+          "Duration (yrs)",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        );
+      case 2:
+        return const Text(
+          "Has Dept",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        );
+      case 3:
+        return const Text(
+          "Department",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        );
+      case 4:
+        return const Text(
+          "Total Students",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        );
+      case 5:
+        return const Text(
+          "Male Students",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        );
+      case 6:
+        return const Text(
+          "Female Students",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        );
+      case 7:
+        return const Text(
+          "Trans Students",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        );
+      default:
+        return const SizedBox(
+          width: 0,
+          height: 0,
+        );
+    }
+  }
+
+  Widget rowBuilder(rowIndex) {
+    return Text(
+      widget.courseInfo[rowIndex]['courseName'].toString(),
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.normal,
+      ),
+    );
+  }
+
+  Widget contentBuilder(rowIndex, colIndex) {
+    switch (colIndex) {
+      case 0:
+        return Text(
+          widget.courseInfo[rowIndex]['courseCode'].toString(),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        );
+      case 1:
+        return Text(
+          widget.courseInfo[rowIndex]['courseDuration'].toString(),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        );
+      case 2:
+        return Text(
+          widget.courseInfo[rowIndex]['courseNoDept'] == true ? 'Yes' : 'No',
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        );
+      case 3:
+        return Text(
+          widget.courseInfo[rowIndex]['courseDept'] != false
+              ? widget.courseInfo[rowIndex]['courseDept'][1]
+              : "".toString(),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        );
+      case 4:
+        return Text(
+          widget.courseInfo[rowIndex]['totalStudents'].toString(),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        );
+      case 5:
+        return Text(
+          widget.courseInfo[rowIndex]['maleStudents'].toString(),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        );
+      case 6:
+        return Text(
+          widget.courseInfo[rowIndex]['femaleStudents'].toString(),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        );
+      case 7:
+        return Text(
+          widget.courseInfo[rowIndex]['transStudents'].toString(),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        );
+
+      default:
+        return const Text("");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: DropdownButton(
-          items: courseNames
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Text(e),
-                ),
-              )
-              .toList(),
-          onChanged: (value) {
-            setState(() {
-              selectedOption = value.toString();
-            });
-
-            widget.callbackCourseName(
-                selectedOption, widget.data, widget.collegeId);
-          }),
+    return StickyHeadersTable(
+      cellDimensions: CellDimensions.variableColumnWidthAndRowHeight(
+        columnWidths: [
+          MediaQuery.of(context).size.width * 0.10,
+          MediaQuery.of(context).size.width * 0.10,
+          MediaQuery.of(context).size.width * 0.10,
+          MediaQuery.of(context).size.width * 0.10,
+          MediaQuery.of(context).size.width * 0.10,
+          MediaQuery.of(context).size.width * 0.10,
+          MediaQuery.of(context).size.width * 0.10,
+          MediaQuery.of(context).size.width * 0.10,
+        ],
+        rowHeights: List<double>.generate(widget.courseInfo.length,
+            (int index) => MediaQuery.of(context).size.height * 0.10),
+        stickyLegendWidth: MediaQuery.of(context).size.width * 0.20,
+        stickyLegendHeight: MediaQuery.of(context).size.height * 0.10,
+      ),
+      initialScrollOffsetX: 0.0,
+      initialScrollOffsetY: 0.0,
+      scrollControllers: scrollControllers(),
+      columnsLength: 8,
+      rowsLength: widget.courseInfo.length,
+      columnsTitleBuilder: (colIndex) {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+            color: Colors.blueAccent,
+          ),
+          child: Center(child: colBuilder(colIndex)),
+        );
+      },
+      rowsTitleBuilder: (rowIndex) {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.orange.shade200,
+          ),
+          child: Center(child: rowBuilder(rowIndex)),
+        );
+      },
+      contentCellBuilder: (colIndex, rowIndex) {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.orange.shade200,
+          ),
+          child: Center(
+            child: contentBuilder(rowIndex, colIndex),
+          ),
+        );
+      },
+      legendCell: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          color: Colors.blueAccent,
+        ),
+        child: const Text(
+          "Course Name",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+      ),
     );
   }
 }

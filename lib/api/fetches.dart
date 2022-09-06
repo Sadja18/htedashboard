@@ -121,14 +121,14 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
     if (kDebugMode) {
       log('receiving');
       log(response.statusCode.toString());
-      log(response.body);
     }
 
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       if (json['message'].toString().toLowerCase() == 'success') {
         if (json['data'] != null && json['data'].isNotEmpty) {
-          var data = json['data'][0];
+          var data = json['data'];
+
           var collegeId = data['id'];
 
           var headName = data['head_name'] == false ? "" : data['head_name'];
@@ -140,31 +140,37 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
               : data['email'];
 
           var deptsCount =
-              data['dept_ids'] == false ? 0 : data['dept_ids'].length;
+              data['dept_ids'] == false || data['dept_ids'].runtimeType != int
+                  ? 0
+                  : data['dept_ids'];
 
-          var deptIds = data['dept_ids'] == false ? [] : data['dept_ids'];
+          var coursesCount = data['course_ids'] == false ||
+                  data['course_ids'].runtimeType != int
+              ? 0
+              : data['course_ids'];
 
-          var coursesCount =
-              data['course_ids'] == false ? 0 : data['course_ids'].length;
+          var studentsCount = data['student_ids'] == false ||
+                  data['student_ids'].runtimeType != int
+              ? 0
+              : data['student_ids'];
 
-          var courseIds = data['course_ids'] == false ? [] : data['course_ids'];
-
-          var studentsCount =
-              data['student_ids'] == false ? 0 : data['student_ids'].length;
-
-          var studentIds =
-              data['student_ids'] == false ? [] : data['student_ids'];
-
-          var teachersCount =
-              data['teacher_ids'] == false ? 0 : data['teacher_ids'].length;
-
-          var teacherIds =
-              data['teacher_ids'] == false ? [] : data['teacher_ids'];
+          var teachersCount = data['teacher_ids'] == false ||
+                  data['teacher_ids'].runtimeType != int
+              ? 0
+              : data['teacher_ids'];
 
           var staffsCount =
-              data['staff_ids'] == false ? 0 : data['staff_ids'].length;
+              data['staff_ids'] == false || data['staff_ids'].runtimeType != int
+                  ? 0
+                  : data['staff_ids'];
 
-          var staffIds = data['staff_ids'] == false ? [] : data['staff_ids'];
+          var profilePic = data['profilePic'];
+
+          if (staffsCount.runtimeType == int) {
+            if (kDebugMode) {
+              log('is int');
+            }
+          }
 
           return {
             "collegeId": collegeId,
@@ -172,15 +178,11 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
             "affliatedTo": affliatedTo,
             'email': email,
             "deptsCount": deptsCount,
-            "depts": deptIds,
             "coursesCount": coursesCount,
-            "courses": courseIds,
             "studentsCount": studentsCount,
-            "studentIds": studentIds,
             "teachersCount": teachersCount,
-            "teachers": teacherIds,
             "staffsCount": staffsCount,
-            "staffs": staffIds
+            'profilePic': profilePic
           };
         } else {
           return null;
@@ -311,10 +313,10 @@ Future<dynamic> fetchCourseDataForCollege(int collegeId) async {
     if (kDebugMode) {
       log("college course requyest sending");
     }
-    var response = await http.post(
-      Uri.parse("$baseURLSchemed$endpointStart$courseForCollegeURI"),
+    var response = await http.get(
+      Uri.parse(
+          "$baseURLSchemed$endpointStart$courseForCollegeURI?permit=courseInfo&collegeId=$collegeId"),
       headers: {'Content-Type': 'application/json'},
-      body: requestBody,
     );
     if (kDebugMode) {
       log("college course request receiving");
@@ -330,13 +332,9 @@ Future<dynamic> fetchCourseDataForCollege(int collegeId) async {
 
       if (json['message'].toString().toLowerCase() == 'success') {
         var data = json['data'];
-        var collegeDP = json['dp'];
 
         if (data != null && data.isNotEmpty) {
-          return {
-            'dp': collegeDP,
-            'data': data,
-          };
+          return data;
         } else {
           return null;
         }
