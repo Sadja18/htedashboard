@@ -204,27 +204,33 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
 Future<dynamic> fetchDeptsForCollege(int collegeId) async {
   try {
     Map<String, dynamic> body = {
-      "college": collegeId,
+      "collegeId": collegeId,
       "permit": "deptinfo",
     };
     var requestBody = jsonEncode(body);
 
     if (kDebugMode) {
-      log("college dept requyest sending");
+      log("college dept request sending ");
+      log(requestBody);
+      log("$baseURLSchemed$endpointStart$staffCountsForDeptCollegeURI");
     }
     var response = await http.post(
       Uri.parse("$baseURLSchemed$endpointStart$staffCountsForDeptCollegeURI"),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control_Allow_Origin": "*"
+      },
       body: requestBody,
     );
     if (kDebugMode) {
-      log("college dept requyest receiving");
+      log("college dept request receiving");
+      log(response.body);
     }
 
     if (response.statusCode == 200) {
       if (kDebugMode) {
-        log('colelge dept');
-        log(response.body);
+        log('college dept');
+        // log(response.body);
       }
 
       var json = jsonDecode(response.body);
