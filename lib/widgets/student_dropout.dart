@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:dashboard/api/fetches.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../widgets/courses_selector.dart';
+import './courses_selector.dart';
+import '../api/fetches.dart';
 
 class StudentDropoutWidget extends StatefulWidget {
   final int collegeId;
@@ -17,7 +17,6 @@ class StudentDropoutWidget extends StatefulWidget {
 
 class _StudentDropoutWidgetState extends State<StudentDropoutWidget> {
   String selectedCourse = "";
-  late dynamic information;
 
   void courseSelector(String selectedCourseName) {
     if (kDebugMode) {

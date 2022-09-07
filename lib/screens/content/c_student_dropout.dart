@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/student_dropout.dart';
+import '../../widgets/student_attendance.dart';
 
 class ScreenStudentDropoutInfo extends StatefulWidget {
   static const routeName = "/screen-student-dropout-info";
@@ -18,12 +19,31 @@ class _ScreenStudentDropoutInfoState extends State<ScreenStudentDropoutInfo> {
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
     collegeId = arguments['collegeId'];
     collegeName = arguments['collegeName'];
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(collegeName),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(collegeName),
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                child: Text("Student Dropouts"),
+              ),
+              Tab(
+                child: Text("Student Attendance"),
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            StudentDropoutWidget(collegeId: collegeId),
+            StudentAttendanceWidget(collegeId: collegeId),
+          ],
+        ),
       ),
-      body: StudentDropoutWidget(collegeId: collegeId),
     );
   }
 }
