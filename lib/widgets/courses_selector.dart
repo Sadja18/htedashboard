@@ -1,34 +1,55 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../api/fetches.dart';
 
 class SelectorCourseFuture extends StatefulWidget {
-  const SelectorCourseFuture({Key? key}) : super(key: key);
+  final int collegeId;
+  final Function(String) courseSelector;
+  const SelectorCourseFuture({
+    Key? key,
+    required this.collegeId,
+    required this.courseSelector,
+  }) : super(key: key);
 
   @override
   State<SelectorCourseFuture> createState() => _SelectorCourseFutureState();
 }
 
 class _SelectorCourseFutureState extends State<SelectorCourseFuture> {
+  late Future<dynamic> _courseFuture;
+
+  @override
+  void initState() {
+    _courseFuture = fetchAllCoursesInCollege(widget.collegeId);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return const Center(
-          child: SizedBox(child: CircularProgressIndicator.adaptive()),
-        );
-      } else {
-        if (snapshot.hasData && snapshot.data != null) {
-          return Text(snapshot.data.toString());
-        } else {
-          return const Center(
-            child: SizedBox(
-              child: Text("No records found"),
-            ),
-          );
-        }
-      }
-    });
+    return FutureBuilder(
+        future: _courseFuture,
+        builder: (BuildContext ctx, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: SizedBox(child: CircularProgressIndicator.adaptive()),
+            );
+          } else {
+            if (snapshot.hasData && snapshot.data != null) {
+              return SelectorCourseDropdown(
+                courseNames: snapshot.data,
+                selectedCourse: widget.courseSelector,
+              );
+            } else {
+              return const Center(
+                child: SizedBox(
+                  child: Text("No records found"),
+                ),
+              );
+            }
+          }
+        });
   }
 }
 
@@ -44,16 +65,48 @@ class SelectorCourseDropdown extends StatefulWidget {
 }
 
 class _SelectorCourseDropdownState extends State<SelectorCourseDropdown> {
+  late String selectedCourseName;
+  late List<String> courseNames;
+
+  @override
+  void initState() {
+    List<String> tmp = [""];
+    for (var courseName in widget.courseNames) {
+      tmp.add(courseName);
+    }
+
+    setState(() {
+      courseNames = tmp;
+    });
+    setState(() {
+      selectedCourseName = courseNames[0];
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.80,
-      height: MediaQuery.of(context).size.height * 0.10,
+      width: MediaQuery.of(context).size.width * 0.50,
+      height: MediaQuery.of(context).size.height * 0.08,
       alignment: Alignment.center,
       decoration: const BoxDecoration(),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Text(widget.courseNames.toString()),
+      child: DropdownButton(
+        value: selectedCourseName,
+        items: courseNames
+            .map(
+              (e) => DropdownMenuItem(value: e, child: Text(e.toString())),
+            )
+            .toList(),
+        onChanged: (selectedValue) {
+          if (kDebugMode) {
+            log('dropdown $selectedValue');
+          }
+          setState(() {
+            selectedCourseName = selectedValue.toString();
+          });
+          widget.selectedCourse(selectedCourseName.toString());
+        },
       ),
     );
   }

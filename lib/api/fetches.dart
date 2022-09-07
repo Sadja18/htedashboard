@@ -403,12 +403,101 @@ Future<dynamic> fetchCollegeProfilePic(int collegeId) async {
   }
 }
 
-Future<dynamic> fetchStudentCountsForGivenCourseCollege(
-    collegeId, courseName) async {
-  try {} catch (e) {
+Future<dynamic> fetchAllCoursesInCollege(int collegeId) async {
+  try {
     if (kDebugMode) {
-      log(e.toString());
+      log('sending request with collegeId $collegeId');
+    }
+
+    var queryParams = {
+      'permit': 'courseLabel',
+      'collegeId': collegeId.toString(),
+    };
+
+    var response = await http.get(
+      Uri(
+          scheme: 'http',
+          host: "localhost",
+          path: "$endpointStart$coursesInCollege",
+          queryParameters: queryParams),
+      headers: {
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+    );
+    if (kDebugMode) {
+      log('received response');
+      log(response.body);
+    }
+
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+
+      if (json['message'].toString().toLowerCase() == 'success') {
+        var data = json['data'];
+        if (data != null && data.isNotEmpty) {
+          List<String> dataNew = [];
+          for (var item in data) {
+            dataNew.add(item.toString());
+          }
+          return dataNew;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
       return null;
     }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+    return null;
+  }
+}
+
+Future<dynamic> fetchStudentDropoutsinCollegeCourse(
+    int collegeId, String courseName) async {
+  try {
+    if (kDebugMode) {
+      log("sending dropout $collegeId $courseName");
+    }
+    Map<String, dynamic> body = {
+      "permit": "dropouts",
+      'collegeId': collegeId,
+      'courseName': courseName,
+    };
+
+    var response = await http.post(
+      Uri.parse("$baseURLSchemed$endpointStart$studentDropouts"),
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(body),
+    );
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+
+      if (json['message'].toString().toLowerCase() == 'success') {
+        var data = json['data'];
+        if (data != null && data.isNotEmpty) {
+          return data;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+    return null;
   }
 }

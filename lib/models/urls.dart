@@ -9,3 +9,5 @@ const staffCountsForDeptCollegeURI = '/fetchdeptcollege.php';
 const courseForCollegeURI = '/fetchcoursecollege.php';
 const teachingStaffSelectorsURI = '/fetchteachingstaffseletors.php';
 const collegeProfilePic = '/fetchcollegeprofilepic.php';
+const coursesInCollege = '/fetchcourseincollege.php';
+const studentDropouts = '/fetchdropouts.php';

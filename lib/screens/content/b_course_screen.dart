@@ -73,8 +73,6 @@ class _ScreenCollegeCourseInfoState extends State<ScreenCollegeCourseInfo> {
     if (kDebugMode) {
       log("parent log $courseName $collegeId");
     }
-    var information =
-        await fetchStudentCountsForGivenCourseCollege(collegeId, courseName);
 
     // setState(() {
     //   selectedCourseName = courseName;
