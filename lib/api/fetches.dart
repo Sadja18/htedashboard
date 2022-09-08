@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 import '../models/urls.dart';
 
@@ -485,6 +487,54 @@ Future<dynamic> fetchStudentDropoutsinCollegeCourse(
         var data = json['data'];
         if (data != null && data.isNotEmpty) {
           return data;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+    return null;
+  }
+}
+
+Future<dynamic> fetchFacultyStaffProfileAnalytics(int collegeId) async {
+  try {
+    if (kDebugMode) {
+      log('faculty info fetch sending');
+    }
+    Map<String, dynamic> body = {
+      "permit": "facultyBase",
+      'collegeId': collegeId,
+    };
+
+    var response = await http.post(
+      Uri.parse("$baseURLSchemed$endpointStart$facultyBaseAnalytics"),
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(body),
+    );
+
+    if (kDebugMode) {
+      log('received faculty base analytics');
+      log(response.body);
+    }
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+
+      if (json['message'].toString().toLowerCase() == 'success') {
+        var data = json['data'];
+        var counts = json['counts'];
+        if (data != null && data.isNotEmpty) {
+          return {"data": data, "counts": counts};
         } else {
           return null;
         }
