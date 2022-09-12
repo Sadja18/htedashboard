@@ -41,10 +41,10 @@ class _ScreenTeachingStaffInfoState extends State<ScreenTeachingStaffInfo> {
           title: Text(collegeName),
           bottom: const TabBar(tabs: [
             Tab(
-              child: Text("Profiles"),
+              child: Text("Attendance"),
             ),
             Tab(
-              child: Text("Attendance"),
+              child: Text("Performance"),
             ),
           ]),
         ),
@@ -53,7 +53,7 @@ class _ScreenTeachingStaffInfoState extends State<ScreenTeachingStaffInfo> {
           children: [
             ProfileTabChild(collegeId: collegeId),
             SizedBox(
-              child: Text("Attendance"),
+              child: Text("Performance"),
             )
           ],
         ),
