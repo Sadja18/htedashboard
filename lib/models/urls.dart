@@ -12,3 +12,4 @@ const collegeProfilePic = "/fetchcollegeprofilepic.php";
 const coursesInCollege = '/fetchcourseincollege.php';
 const studentDropouts = '/fetchdropouts.php';
 const facultyBaseAnalytics = '/facultybaseanalytics.php';
+const studentAttendanceCourseCurrentSem = '/studentattendancecourse.php';

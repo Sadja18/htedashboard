@@ -480,6 +480,16 @@ Future<dynamic> fetchStudentDropoutsinCollegeCourse(
       },
       body: jsonEncode(body),
     );
+
+    if (kDebugMode) {
+      log({
+        "permit": "dropouts",
+        'collegeId': collegeId,
+        'courseName': courseName,
+      }.toString());
+      log('course selector');
+    }
+
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
 
@@ -542,6 +552,65 @@ Future<dynamic> fetchFacultyStaffProfileAnalytics(int collegeId) async {
         return null;
       }
     } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log(e.toString());
+    }
+    return null;
+  }
+}
+
+Future<dynamic> fetchStudentAttendanceCourseCurrentSem(int collegeId) async {
+  try {
+    if (kDebugMode) {
+      log('making body student attendance current sem request');
+    }
+
+    Map<String, dynamic> body = {"permit": "whole", "collegeId": 13};
+
+    if (kDebugMode) {
+      log('sending student attendance current sem request');
+      log("$baseURLSchemed$endpointStart$studentAttendanceCourseCurrentSem");
+      log(body.toString());
+    }
+    var response = await http.post(
+      Uri.parse(
+          "$baseURLSchemed$endpointStart$studentAttendanceCourseCurrentSem"),
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(body),
+    );
+    if (kDebugMode) {
+      log('sent request');
+    }
+
+    if (response.statusCode == 200) {
+      // var info = response.toString();
+      if (kDebugMode) {
+        log(response.body);
+      }
+
+      var records = jsonDecode(response.body);
+      if (records['message'].toString().toLowerCase() == 'success') {
+        var data = records['data'];
+
+        if (kDebugMode) {
+          log(data.toString());
+        }
+        if (data != null && data.isNotEmpty) {
+          return data;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      log(response.reasonPhrase.toString());
       return null;
     }
   } catch (e) {
