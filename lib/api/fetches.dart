@@ -16,7 +16,7 @@ Future<dynamic> fetchSelectorBaseRecords() async {
     Map<String, String> queryParams = {"permit": "sadjaBase"};
     var response = await http.get(
       Uri(
-          scheme: 'http',
+          scheme: 'https',
           host: baseURLUnschemed,
           path: "$endpointStart$selectorBaseRecords",
           queryParameters: queryParams),
@@ -110,8 +110,8 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
     };
     var response = await http.get(
       Uri(
-          scheme: 'http',
-          host: "localhost",
+          scheme: 'https',
+          host: "62.77.157.49",
           path: "$endpointStart$collegeInfoURI",
           queryParameters: queryParams),
       headers: {
@@ -133,18 +133,20 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
 
           var collegeId = data['id'];
 
-          var headName = data['head_name'] == false ? "" : data['head_name'];
+          var headName =
+              data['head_name'] == false ? "" : data['head_name'];
 
-          var affliatedTo = data['univ_id'] == false ? "" : data['univ_id'][1];
+          var affliatedTo =
+              data['univ_id'] == false ? "" : data['univ_id'][1];
 
           var email = data['email'] == false || data['email'] == ""
               ? ""
               : data['email'];
 
-          var deptsCount =
-              data['dept_ids'] == false || data['dept_ids'].runtimeType != int
-                  ? 0
-                  : data['dept_ids'];
+          var deptsCount = data['dept_ids'] == false ||
+                  data['dept_ids'].runtimeType != int
+              ? 0
+              : data['dept_ids'];
 
           var coursesCount = data['course_ids'] == false ||
                   data['course_ids'].runtimeType != int
@@ -161,10 +163,10 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
               ? 0
               : data['teacher_ids'];
 
-          var staffsCount =
-              data['staff_ids'] == false || data['staff_ids'].runtimeType != int
-                  ? 0
-                  : data['staff_ids'];
+          var staffsCount = data['staff_ids'] == false ||
+                  data['staff_ids'].runtimeType != int
+              ? 0
+              : data['staff_ids'];
 
           var profilePic = data['profilePic'];
 
@@ -217,7 +219,8 @@ Future<dynamic> fetchDeptsForCollege(int collegeId) async {
       log("$baseURLSchemed$endpointStart$staffCountsForDeptCollegeURI");
     }
     var response = await http.post(
-      Uri.parse("$baseURLSchemed$endpointStart$staffCountsForDeptCollegeURI"),
+      Uri.parse(
+          "$baseURLSchemed$endpointStart$staffCountsForDeptCollegeURI"),
       headers: {
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -365,7 +368,7 @@ Future<dynamic> fetchCollegeProfilePic(int collegeId) async {
     }
     var response = await http.get(
       Uri(
-          scheme: 'http',
+          scheme: 'https',
           host: baseURLUnschemed,
           path: "$endpointStart$collegeProfilePic",
           queryParameters: body),
@@ -418,8 +421,8 @@ Future<dynamic> fetchAllCoursesInCollege(int collegeId) async {
 
     var response = await http.get(
       Uri(
-          scheme: 'http',
-          host: "localhost",
+          scheme: 'https',
+          host: "62.77.157.49",
           path: "$endpointStart$coursesInCollege",
           queryParameters: queryParams),
       headers: {
@@ -562,7 +565,8 @@ Future<dynamic> fetchFacultyStaffProfileAnalytics(int collegeId) async {
   }
 }
 
-Future<dynamic> fetchStudentAttendanceCourseCurrentSem(int collegeId) async {
+Future<dynamic> fetchStudentAttendanceCourseCurrentSem(
+    int collegeId) async {
   try {
     if (kDebugMode) {
       log('making body student attendance current sem request');
