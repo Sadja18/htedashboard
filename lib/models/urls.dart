@@ -1,7 +1,7 @@
-const baseURLSchemed = 'http://localhost';
-const baseURLUnschemed = 'localhost';
+const baseURLSchemed = 'http://62.77.157.49';
+const baseURLUnschemed = '62.77.157.49';
 
-const endpointStart = '/hteapi';
+const endpointStart = '/dashboard';
 
 const selectorBaseRecords = '/fetchdcvc.php';
 const collegeInfoURI = '/fetchcollegeinfo.php';
