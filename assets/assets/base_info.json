@@ -1,0 +1,195 @@
+{
+    "message": "success",
+    "data": [
+        {
+            "id": 8,
+            "name": "Government Engineering College, Daman",
+            "head_name": "Dr. Avinash R. Chaudhari",
+            "block": [
+                552,
+                "DAMAN"
+            ],
+            "cluster": [
+                570,
+                "NANI DAMAN"
+            ],
+            "city": [
+                574,
+                "KACHIGAM"
+            ],
+            "lat": "20.413494697898162",
+            "longi": "72.86127316979159"
+        },
+        {
+            "id": 9,
+            "name": "Government Polytechnic Daman",
+            "head_name": "Dr. Suhas Vinayak Patil",
+            "block": [
+                552,
+                "DAMAN"
+            ],
+            "cluster": [
+                567,
+                "MOTI DAMAN"
+            ],
+            "city": [
+                568,
+                "MOTI DAMAN"
+            ],
+            "lat": "20.41",
+            "longi": "72.866"
+        },
+        {
+            "id": 13,
+            "name": "Government College Daman",
+            "head_name": "Dr. S. Kumar",
+            "block": [
+                552,
+                "DAMAN"
+            ],
+            "cluster": [
+                570,
+                "NANI DAMAN"
+            ],
+            "city": [
+                574,
+                "KACHIGAM"
+            ],
+            "lat": "20.4232",
+            "longi": "72.8495"
+        },
+        {
+            "id": 14,
+            "name": "Government Industrial Training Institute (ITI), Daman",
+            "head_name": "DEPARTMENT OF HIGHER AND TECHNICAL EDUCATION",
+            "block": [
+                552,
+                "DAMAN"
+            ],
+            "cluster": [
+                570,
+                "NANI DAMAN"
+            ],
+            "city": [
+                572,
+                "DALWADA"
+            ],
+            "lat": "414256091904225",
+            "longi": "72.87029678465588"
+        },
+        {
+            "id": 18,
+            "name": "DR BABASAHEB BHIMRAO AMBEDKAR GOVERNMENT POLYTECHNIC",
+            "head_name": "Shri Lalit V Solanki",
+            "block": [
+                551,
+                "DNH"
+            ],
+            "cluster": [
+                556,
+                "SILVASSA"
+            ],
+            "city": [
+                581,
+                "RANDHA"
+            ],
+            "lat": "22.217040780756804",
+            "longi": "73.03793375396764"
+        },
+        {
+            "id": 19,
+            "name": "GOVERNMENT INDUSTRIAL TRAINING INSTITUTE (ITI) SILVASSA DNH",
+            "head_name": "Mr. Suryamani Mishra",
+            "block": [
+                551,
+                "DNH"
+            ],
+            "cluster": [
+                556,
+                "SILVASSA"
+            ],
+            "city": [
+                564,
+                "AMLI"
+            ],
+            "lat": "20.27971269997658",
+            "longi": "73.00316439206472"
+        },
+        {
+            "id": 20,
+            "name": "Government Polytechnic Diu",
+            "head_name": "SHRI. NITIN G. GAJWANI",
+            "block": [
+                553,
+                "DIU"
+            ],
+            "cluster": [
+                577,
+                "GHOGLA"
+            ],
+            "city": [
+                578,
+                "FUDAM"
+            ],
+            "lat": "20.762963392009883",
+            "longi": "70.9457635356939"
+        },
+        {
+            "id": 21,
+            "name": "Dr. APJ Abdul Kalam Govt. College Silvassa",
+            "head_name": "Dr. Bhagwanjee Jha",
+            "block": [
+                551,
+                "DNH"
+            ],
+            "cluster": [
+                556,
+                "SILVASSA"
+            ],
+            "city": [
+                582,
+                "TOKARKHADA"
+            ],
+            "lat": "20.288398966788893",
+            "longi": "73.01175890524844"
+        },
+        {
+            "id": 22,
+            "name": "Diu College, Diu",
+            "head_name": "SHRI VAIBHAV RIKHARI",
+            "block": [
+                553,
+                "DIU"
+            ],
+            "cluster": [
+                575,
+                "VANAKBARA"
+            ],
+            "city": [
+                576,
+                "KHARA ROAD"
+            ],
+            "lat": "20.71542645343596",
+            "longi": "70.99317737627099"
+        },
+        {
+            "id": 23,
+            "name": "Government Industrial Training Institute, Ghoghla-Diu",
+            "head_name": "Principal",
+            "block": [
+                553,
+                "DIU"
+            ],
+            "cluster": [
+                577,
+                "GHOGLA"
+            ],
+            "city": [
+                578,
+                "FUDAM"
+            ],
+            "lat": "20.73856749614502",
+            "longi": "71.00429500283235"
+        }
+    ]
+}
