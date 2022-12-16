@@ -25229,7 +25229,7 @@ s=p}while(true)switch(s){case 0:p=4
 b=t.N
 m=A.af(["permit","sadjaBase"],b,b)
 s=7
-return A.ac(A.amH(A.W9("62.77.157.49","/dashboard/fetchdcvc.php",m,"https"),A.af(["Accept","application/json","Access-Control_Allow_Origin","*"],b,b)),$async$amv)
+return A.ac(A.amH(A.W9("10.184.49.39","/dashboard/fetchdcvc.php",m,"https"),A.af(["Accept","application/json","Access-Control_Allow_Origin","*"],b,b)),$async$amv)
 case 7:l=a5
 if(l.b===200){a=l
 k=B.a0.jp(0,A.qF(A.qu(a.e).c.a.i(0,"charset")).cG(0,a.w),null)
@@ -25279,7 +25279,7 @@ s=p}while(true)switch(s){case 0:p=4
 a2=t.N
 m=A.af(["permit","staffCount","college",a6],a2,a2)
 s=7
-return A.ac(A.amH(A.W9("62.77.157.49","/dashboard/fetchcollegeinfo.php",m,"https"),A.af(["Accept","application/json","Access-Control_Allow_Origin","*"],a2,a2)),$async$amw)
+return A.ac(A.amH(A.W9("10.184.49.39","/dashboard/fetchcollegeinfo.php",m,"https"),A.af(["Accept","application/json","Access-Control_Allow_Origin","*"],a2,a2)),$async$amw)
 case 7:l=a8
 if(l.b===200){a3=l
 k=B.a0.jp(0,A.qF(A.qu(a3.e).c.a.i(0,"charset")).cG(0,a3.w),null)
@@ -25328,7 +25328,7 @@ g=t.N
 m=A.af(["collegeId",a,"permit","deptinfo"],g,t.z)
 l=B.a0.nr(m,null)
 s=7
-return A.ac(A.ane(A.kj("https://62.77.157.49/dashboard/fetchdeptcollege.php"),l,A.af(["Content-Type","application/json","Access-Control_Allow_Origin","*"],g,g)),$async$amq)
+return A.ac(A.ane(A.kj("http://10.184.49.39/dashboard/fetchdeptcollege.php"),l,A.af(["Content-Type","application/json","Access-Control_Allow_Origin","*"],g,g)),$async$amq)
 case 7:k=c
 if(k.b===200){g=k
 j=B.a0.jp(0,A.qF(A.qu(g.e).c.a.i(0,"charset")).cG(0,g.w),null)
@@ -25363,7 +25363,7 @@ h=t.N
 m=A.af(["college",a,"permit","courseInfo"],h,t.z)
 B.a0.nr(m,null)
 s=7
-return A.ac(A.amH(A.kj("https://62.77.157.49/dashboard/fetchcoursecollege.php?permit=courseInfo&collegeId="+a),A.af(["Content-Type","application/json"],h,h)),$async$amp)
+return A.ac(A.amH(A.kj("http://10.184.49.39/dashboard/fetchcoursecollege.php?permit=courseInfo&collegeId="+a),A.af(["Content-Type","application/json"],h,h)),$async$amp)
 case 7:l=c
 if(l.b===200){h=l
 k=B.a0.jp(0,A.qF(A.qu(h.e).c.a.i(0,"charset")).cG(0,h.w),null)
@@ -25397,7 +25397,7 @@ s=p}while(true)switch(s){case 0:p=4
 f=t.N
 m=A.af(["permit","courseLabel","collegeId",B.f.j(a)],f,f)
 s=7
-return A.ac(A.amH(A.W9("62.77.157.49","/dashboard/fetchcourseincollege.php",m,"https"),A.af(["Accept","application/json","Access-Control_Allow_Origin","*"],f,f)),$async$amo)
+return A.ac(A.amH(A.W9("10.184.49.39","/dashboard/fetchcourseincollege.php",m,"https"),A.af(["Accept","application/json","Access-Control_Allow_Origin","*"],f,f)),$async$amo)
 case 7:l=c
 if(l.b===200){f=l
 k=B.a0.jp(0,A.qF(A.qu(f.e).c.a.i(0,"charset")).cG(0,f.w),null)
@@ -25434,7 +25434,7 @@ var $async$amy=A.a2(function(c,d){if(c===1){o=d
 s=p}while(true)switch(s){case 0:p=4
 h=t.N
 m=A.af(["permit","dropouts","collegeId",a,"courseName",b],h,t.z)
-g=A.kj("https://62.77.157.49/dashboard/fetchdropouts.php")
+g=A.kj("http://10.184.49.39/dashboard/fetchdropouts.php")
 h=A.af(["Content-Type","application/json","Access-Control_Allow_Origin","*"],h,h)
 s=7
 return A.ac(A.ane(g,B.a0.nr(m,null),h),$async$amy)
@@ -25473,7 +25473,7 @@ s=p}while(true)switch(s){case 0:p=4
 g=t.N
 f=t.z
 m=A.af(["permit","facultyBase","collegeId",a],g,f)
-e=A.kj("https://62.77.157.49/dashboard/facultybaseanalytics.php")
+e=A.kj("http://10.184.49.39/dashboard/facultybaseanalytics.php")
 d=A.af(["Content-Type","application/json","Access-Control_Allow_Origin","*"],g,g)
 s=7
 return A.ac(A.ane(e,B.a0.nr(m,null),d),$async$amr)
@@ -25512,7 +25512,7 @@ var $async$amx=A.a2(function(b,c){if(b===1){o=c
 s=p}while(true)switch(s){case 0:p=4
 h=t.N
 m=A.af(["permit","whole","collegeId",13],h,t.z)
-g=A.kj("https://62.77.157.49/dashboard/studentattendancecourse.php")
+g=A.kj("http://10.184.49.39/dashboard/studentattendancecourse.php")
 h=A.af(["Content-Type","application/json","Access-Control_Allow_Origin","*"],h,h)
 s=7
 return A.ac(A.ane(g,B.a0.nr(m,null),h),$async$amx)

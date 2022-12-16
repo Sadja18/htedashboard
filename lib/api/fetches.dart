@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 import '../models/urls.dart';
 
@@ -111,7 +109,7 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
     var response = await http.get(
       Uri(
           scheme: 'https',
-          host: "62.77.157.49",
+          host: baseURLUnschemed,
           path: "$endpointStart$collegeInfoURI",
           queryParameters: queryParams),
       headers: {
@@ -422,7 +420,7 @@ Future<dynamic> fetchAllCoursesInCollege(int collegeId) async {
     var response = await http.get(
       Uri(
           scheme: 'https',
-          host: "62.77.157.49",
+          host: baseURLUnschemed,
           path: "$endpointStart$coursesInCollege",
           queryParameters: queryParams),
       headers: {
