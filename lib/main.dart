@@ -44,10 +44,13 @@ class MyApp extends StatelessWidget {
         ScreenAttendancePercentages.routeName: (ctx) =>
             ScreenAttendancePercentages(),
         ScreenCollegeDeptInfo.routeName: (ctx) => ScreenCollegeDeptInfo(),
-        ScreenCollegeCourseInfo.routeName: (ctx) => ScreenCollegeCourseInfo(),
-        ScreenTeachingStaffInfo.routename: (ctx) => ScreenTeachingStaffInfo(),
+        ScreenCollegeCourseInfo.routeName: (ctx) =>
+            ScreenCollegeCourseInfo(),
+        ScreenTeachingStaffInfo.routename: (ctx) =>
+            ScreenTeachingStaffInfo(),
         ScreenNtStaff.routeName: (ctx) => ScreenNtStaff(),
-        ScreenStudentDropoutInfo.routeName: (ctx) => ScreenStudentDropoutInfo(),
+        ScreenStudentDropoutInfo.routeName: (ctx) =>
+            ScreenStudentDropoutInfo(),
       },
       // debugShowCheckedModeBanner: false,
     );

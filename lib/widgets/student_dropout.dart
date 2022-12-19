@@ -12,7 +12,8 @@ class StudentDropoutWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StudentDropoutWidget> createState() => _StudentDropoutWidgetState();
+  State<StudentDropoutWidget> createState() =>
+      _StudentDropoutWidgetState();
 }
 
 class _StudentDropoutWidgetState extends State<StudentDropoutWidget> {
@@ -122,22 +123,29 @@ class _StudentDropoutWidgetState extends State<StudentDropoutWidget> {
                   future: fetchStudentDropoutsinCollegeCourse(
                       widget.collegeId, selectedCourse),
                   builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
+                    if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
                       return Center(
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.10,
-                          height: MediaQuery.of(context).size.height * 0.08,
-                          child: const CircularProgressIndicator.adaptive(),
+                          height:
+                              MediaQuery.of(context).size.height * 0.08,
+                          child:
+                              const CircularProgressIndicator.adaptive(),
                         ),
                       );
                     } else {
+                      if (kDebugMode) {
+                        log("");
+                      }
                       if (snapshot.hasData &&
                           snapshot.data != null &&
                           snapshot.data.isNotEmpty) {
                         return Container(
                           alignment: Alignment.center,
                           width: MediaQuery.of(context).size.width * 0.80,
-                          height: MediaQuery.of(context).size.height * 0.80,
+                          height:
+                              MediaQuery.of(context).size.height * 0.80,
                           decoration: const BoxDecoration(),
                           child: Table(
                             defaultVerticalAlignment:
@@ -150,8 +158,10 @@ class _StudentDropoutWidgetState extends State<StudentDropoutWidget> {
                               TableRow(
                                 children: [
                                   TableCell(
-                                    child: (snapshot.data['current'] != null &&
-                                            snapshot.data['current'].isNotEmpty)
+                                    child: (snapshot.data['current'] !=
+                                                null &&
+                                            snapshot.data['current']
+                                                .isNotEmpty)
                                         ? Center(
                                             child: ChartExistingStudent(
                                               groupedRecords:
@@ -165,45 +175,49 @@ class _StudentDropoutWidgetState extends State<StudentDropoutWidget> {
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.08,
+                                              height:
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.08,
                                               child: const Text(
                                                 "No student has taken admission in this course",
-                                                textAlign: TextAlign.center,
+                                                textAlign:
+                                                    TextAlign.center,
                                               ),
                                             ),
                                           ),
                                   ),
                                   TableCell(
-                                    child:
-                                        (snapshot.data['terminate'] != null &&
-                                                snapshot.data['terminate']
-                                                    .isNotEmpty)
-                                            ? Center(
-                                                child: ChartExistingStudent(
-                                                  groupedRecords:
-                                                      preProcessorCurrent(
-                                                          snapshot.data),
-                                                  name: 'Dropouts',
-                                                ),
-                                              )
-                                            : Center(
-                                                child: SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  height: MediaQuery.of(context)
+                                    child: (snapshot.data['terminate'] !=
+                                                null &&
+                                            snapshot.data['terminate']
+                                                .isNotEmpty)
+                                        ? Center(
+                                            child: ChartExistingStudent(
+                                              groupedRecords:
+                                                  preProcessorCurrent(
+                                                      snapshot.data),
+                                              name: 'Dropouts',
+                                            ),
+                                          )
+                                        : Center(
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height:
+                                                  MediaQuery.of(context)
                                                           .size
                                                           .height *
                                                       0.08,
-                                                  child: const Text(
-                                                    "No student has dropped out",
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
+                                              child: const Text(
+                                                "No student has dropped out",
+                                                textAlign:
+                                                    TextAlign.center,
                                               ),
+                                            ),
+                                          ),
                                   ),
                                 ],
                               ),
@@ -213,8 +227,10 @@ class _StudentDropoutWidgetState extends State<StudentDropoutWidget> {
                       } else {
                         return Center(
                           child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.10,
-                            height: MediaQuery.of(context).size.height * 0.08,
+                            width:
+                                MediaQuery.of(context).size.width * 0.10,
+                            height:
+                                MediaQuery.of(context).size.height * 0.08,
                             child: const Text(
                               "No students record found for the selected course",
                             ),
@@ -240,7 +256,8 @@ class ChartExistingStudent extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ChartExistingStudent> createState() => _ChartExistingStudentState();
+  State<ChartExistingStudent> createState() =>
+      _ChartExistingStudentState();
 }
 
 class _ChartExistingStudentState extends State<ChartExistingStudent> {

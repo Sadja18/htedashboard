@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dashboard/models/local_data.dart';
 import 'package:dashboard/widgets/avatar_generator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -471,6 +472,12 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           onTap: () {
                             int collegeId = data['collegeId'];
 
+                            if (kDebugMode) {
+                              log("information clicked");
+                              log("College ID $collegeId");
+                              log("College Name, $collegeName");
+                            }
+
                             Navigator.pushNamed(
                               context,
                               ScreenStudentDropoutInfo.routeName,
@@ -597,7 +604,8 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                 width: MediaQuery.of(context).size.width * 0.20,
                 height: MediaQuery.of(context).size.height * 0.40,
                 alignment: Alignment.center,
-                child: Text("No detailed information found on $collegeName"),
+                child:
+                    Text("No detailed information found on $collegeName"),
               ),
               actions: [
                 InkWell(
@@ -765,7 +773,8 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                 fontSize: 25,
                 color: Colors.black,
               ),
-              label: "Government Industrial Training Institute, Ghoghla-Diu",
+              label:
+                  "Government Industrial Training Institute, Ghoghla-Diu",
               points: govtITIGhoghlaDiuPolyplot,
             ),
           ],
@@ -777,21 +786,30 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: govtEngineeringCollegeDaman,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails("Government Engineering College Daman");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel: "Government Engineering College Daman",
-                    height: 30,
+                child: Tooltip(
+                  message: "Government Engineering College, Daman",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onTap: () async {
+                      showDetails("Government Engineering College Daman");
+                    },
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel:
+                          "Government Engineering College Daman",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -801,21 +819,35 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: govtPolytechnicDaman,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails("Government Polytechnic Daman");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel: "Government Polytechnic Daman",
-                    height: 30,
+                child: Tooltip(
+                  message: "Government Polytechnic, Daman",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails("Government Polytechnic Daman");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel: "Government Polytechnic Daman",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -825,21 +857,35 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: govtCollegeDaman,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails("Government College Daman");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel: "Government College Daman",
-                    height: 30,
+                child: Tooltip(
+                  message: "Government College, Daman",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails("Government College Daman");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel: "Government College Daman",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -849,23 +895,38 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: govtITIDaman,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails(
-                        "Government Industrial Training Institute (ITI), Daman");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel:
-                        "Government Industrial Training Institute (ITI), Daman",
-                    height: 30,
+                child: Tooltip(
+                  message:
+                      "Government Industrial Training Institute (ITI), Daman",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails(
+                          "Government Industrial Training Institute (ITI), Daman");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel:
+                          "Government Industrial Training Institute (ITI), Daman",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -875,48 +936,78 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: drBhimraoGovtPolytechnic,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails(
-                        "DR BABASAHEB BHIMRAO AMBEDKAR GOVERNMENT POLYTECHNIC");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel:
-                        "DR BABASAHEB BHIMRAO AMBEDKAR GOVERNMENT POLYTECHNIC",
-                    height: 30,
+                child: Tooltip(
+                  message:
+                      "DR BABASAHEB BHIMRAO AMBEDKAR GOVERNMENT POLYTECHNIC",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails(
+                          "DR BABASAHEB BHIMRAO AMBEDKAR GOVERNMENT POLYTECHNIC");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel:
+                          "DR BABASAHEB BHIMRAO AMBEDKAR GOVERNMENT POLYTECHNIC",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
             ),
             //6
             Marker(
-              point: govtPolytechnicDiu,
+              point: govtITISilvassa,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails(
-                        "GOVERNMENT INDUSTRIAL TRAINING INSTITUTE (ITI) SILVASSA DNHnaman");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel: "Government Polytechnic Diu",
-                    height: 30,
+                child: Tooltip(
+                  message:
+                      "Government Industrial Training Institute (ITI), Silvassa, DNH",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails(
+                          "GOVERNMENT INDUSTRIAL TRAINING INSTITUTE (ITI) SILVASSA, DNH");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel: "Government Polytechnic Diu",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -926,21 +1017,35 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: govtPolytechnicDiu,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails("Government Polytechnic Diu");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel: "Government Polytechnic Diu",
-                    height: 30,
+                child: Tooltip(
+                  message: "Goverment Polytechnic, Diu",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails("Government Polytechnic Diu");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel: "Government Polytechnic Diu",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -950,23 +1055,38 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: abdulKalamGovtCollege,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails(
-                        "Dr. A.P.J. Abdul Kalam Government College, Silvassa");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel:
-                        "Dr. A.P.J. Abdul Kalam Government College, Silvassa",
-                    height: 30,
+                child: Tooltip(
+                  message:
+                      "Dr. A.P.J. Abdul Kalam Goverment College, Silvassa",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails(
+                          "Dr. A.P.J. Abdul Kalam Government College, Silvassa");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel:
+                          "Dr. A.P.J. Abdul Kalam Government College, Silvassa",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -976,21 +1096,35 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: diuCollegeDiu,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails("Diu College, Diu");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel: "Diu College, Diu",
-                    height: 30,
+                child: Tooltip(
+                  message: "Diu College, Diu",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails("Diu College, Diu");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel: "Diu College, Diu",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -1000,22 +1134,37 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               point: govtITIGhoghlaDiu,
               builder: (ctx) => Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onLongPress: () {
-                    if (kDebugMode) {
-                      log("Open the web page of college");
-                    }
-                  },
-                  onTap: () async {
-                    showDetails(
-                        "Government Industrial Training Institute, Ghoghla-Diu");
-                  },
-                  // ignore: prefer_const_constructors
-                  child: Image.asset(
-                    "assets/images/marker_hat_filled.png",
-                    fit: BoxFit.cover,
-                    semanticLabel: "Government ITI, Ghoghla-Diu",
-                    height: 30,
+                child: Tooltip(
+                  message:
+                      "Government Industrial Training Institute, Ghoghla-Diu",
+                  padding: const EdgeInsets.all(30),
+                  margin:
+                      const EdgeInsets.only(top: 30, left: 30, right: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(22)),
+                  textStyle: const TextStyle(
+                    fontSize: 15,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+                  child: InkWell(
+                    onLongPress: () {
+                      if (kDebugMode) {
+                        log("Open the web page of college");
+                      }
+                    },
+                    onTap: () async {
+                      showDetails(
+                          "Government Industrial Training Institute, Ghoghla-Diu");
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Image.asset(
+                      "assets/images/marker_hat_filled.png",
+                      fit: BoxFit.cover,
+                      semanticLabel: "Government ITI, Ghoghla-Diu",
+                      height: 30,
+                    ),
                   ),
                 ),
               ),
@@ -1061,9 +1210,9 @@ class AvatarBuilder extends StatelessWidget {
       ),
       child: ClipOval(
         child: Image(
-          image:
-              Image.memory(const Base64Decoder().convert(profilePic.toString()))
-                  .image,
+          image: Image.memory(
+                  const Base64Decoder().convert(profilePic.toString()))
+              .image,
           fit: BoxFit.fill,
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,

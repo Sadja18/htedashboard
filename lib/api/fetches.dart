@@ -14,7 +14,7 @@ Future<dynamic> fetchSelectorBaseRecords() async {
     Map<String, String> queryParams = {"permit": "sadjaBase"};
     var response = await http.get(
       Uri(
-          scheme: 'http',
+          scheme: 'https',
           host: baseURLUnschemed,
           path: "$endpointStart$selectorBaseRecords",
           queryParameters: queryParams),
@@ -108,7 +108,7 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
     };
     var response = await http.get(
       Uri(
-          scheme: 'http',
+          scheme: 'https',
           host: baseURLUnschemed,
           path: "$endpointStart$collegeInfoURI",
           queryParameters: queryParams),
@@ -366,7 +366,7 @@ Future<dynamic> fetchCollegeProfilePic(int collegeId) async {
     }
     var response = await http.get(
       Uri(
-          scheme: 'http',
+          scheme: 'https',
           host: baseURLUnschemed,
           path: "$endpointStart$collegeProfilePic",
           queryParameters: body),
@@ -419,7 +419,7 @@ Future<dynamic> fetchAllCoursesInCollege(int collegeId) async {
 
     var response = await http.get(
       Uri(
-          scheme: 'http',
+          scheme: 'https',
           host: baseURLUnschemed,
           path: "$endpointStart$coursesInCollege",
           queryParameters: queryParams),
@@ -492,6 +492,11 @@ Future<dynamic> fetchStudentDropoutsinCollegeCourse(
     }
 
     if (response.statusCode == 200) {
+      if (kDebugMode) {
+        log("response dropout");
+        log(response.body);
+      }
+
       var json = jsonDecode(response.body);
 
       if (json['message'].toString().toLowerCase() == 'success') {
