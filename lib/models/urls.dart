@@ -1,5 +1,5 @@
-const baseURLSchemed = 'http://10.184.49.39';
-const baseURLUnschemed = '10.184.49.39';
+const baseURLSchemed = 'http://10.184.49.31';
+const baseURLUnschemed = '10.184.49.31';
 
 const endpointStart = '/dashboard';
 
