@@ -15,7 +15,8 @@ class ScreenCollegeCourseInfo extends StatefulWidget {
       _ScreenCollegeCourseInfoState();
 }
 
-class _ScreenCollegeCourseInfoState extends State<ScreenCollegeCourseInfo> {
+class _ScreenCollegeCourseInfoState
+    extends State<ScreenCollegeCourseInfo> {
   var collegeId;
   var collegeName;
 
@@ -85,7 +86,8 @@ class _ScreenCollegeCourseInfoState extends State<ScreenCollegeCourseInfo> {
 
   @override
   Widget build(BuildContext context) {
-    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    final Map arguments =
+        ModalRoute.of(context)!.settings.arguments as Map;
     collegeId = arguments['collegeId'];
     collegeName = arguments['collegeName'];
 
@@ -144,7 +146,8 @@ class CouseInfoStickyHeader extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CouseInfoStickyHeader> createState() => _CouseInfoStickyHeaderState();
+  State<CouseInfoStickyHeader> createState() =>
+      _CouseInfoStickyHeaderState();
 }
 
 class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
@@ -177,7 +180,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
         );
       case 1:
         return const Text(
@@ -186,7 +191,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
         );
       case 2:
         return const Text("");
@@ -197,7 +204,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
         );
       case 4:
         return const Text(
@@ -206,7 +215,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
         );
       case 5:
         return const Text(
@@ -215,7 +226,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
         );
       case 6:
         return const Text(
@@ -224,7 +237,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
         );
       case 7:
         return const Text(
@@ -233,7 +248,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
         );
       default:
         return const SizedBox(
@@ -293,7 +310,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
         );
       case 4:
         return Text(
-          widget.courseInfo[rowIndex]['totalStudents'].toString(),
+          widget.courseInfo[rowIndex]['totalStudents'].toString() == "0"
+              ? "-"
+              : widget.courseInfo[rowIndex]['totalStudents'].toString(),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
@@ -303,7 +322,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
         );
       case 5:
         return Text(
-          widget.courseInfo[rowIndex]['maleStudents'].toString(),
+          widget.courseInfo[rowIndex]['maleStudents'].toString() == "0"
+              ? "-"
+              : widget.courseInfo[rowIndex]['maleStudents'].toString(),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
@@ -313,7 +334,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
         );
       case 6:
         return Text(
-          widget.courseInfo[rowIndex]['femaleStudents'].toString(),
+          widget.courseInfo[rowIndex]['femaleStudents'].toString() == "0"
+              ? "-"
+              : widget.courseInfo[rowIndex]['femaleStudents'].toString(),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
@@ -323,7 +346,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
         );
       case 7:
         return Text(
-          widget.courseInfo[rowIndex]['transStudents'].toString(),
+          widget.courseInfo[rowIndex]['transStudents'].toString() == "0"
+              ? "-"
+              : widget.courseInfo[rowIndex]['transStudents'].toString(),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
@@ -409,7 +434,9 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20),
         ),
       ),
     );

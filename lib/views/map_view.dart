@@ -800,7 +800,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                     color: Colors.white,
                   ),
                   child: InkWell(
-                    onTap: () async {
+                    onTap: () {
                       showDetails("Government Engineering College Daman");
                     },
                     child: Image.asset(
@@ -838,7 +838,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails("Government Polytechnic Daman");
                     },
                     // ignore: prefer_const_constructors
@@ -876,7 +876,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails("Government College Daman");
                     },
                     // ignore: prefer_const_constructors
@@ -915,7 +915,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails(
                           "Government Industrial Training Institute (ITI), Daman");
                     },
@@ -956,7 +956,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails(
                           "DR BABASAHEB BHIMRAO AMBEDKAR GOVERNMENT POLYTECHNIC");
                     },
@@ -997,7 +997,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails(
                           "GOVERNMENT INDUSTRIAL TRAINING INSTITUTE (ITI) SILVASSA, DNH");
                     },
@@ -1036,7 +1036,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails("Government Polytechnic Diu");
                     },
                     // ignore: prefer_const_constructors
@@ -1075,7 +1075,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails(
                           "Dr. A.P.J. Abdul Kalam Government College, Silvassa");
                     },
@@ -1115,7 +1115,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails("Diu College, Diu");
                     },
                     // ignore: prefer_const_constructors
@@ -1154,7 +1154,7 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                         log("Open the web page of college");
                       }
                     },
-                    onTap: () async {
+                    onTap: () {
                       showDetails(
                           "Government Industrial Training Institute, Ghoghla-Diu");
                     },

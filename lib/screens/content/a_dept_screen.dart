@@ -15,7 +15,8 @@ class ScreenCollegeDeptInfo extends StatefulWidget {
   const ScreenCollegeDeptInfo({Key? key}) : super(key: key);
 
   @override
-  State<ScreenCollegeDeptInfo> createState() => _ScreenCollegeDeptInfoState();
+  State<ScreenCollegeDeptInfo> createState() =>
+      _ScreenCollegeDeptInfoState();
 }
 
 class _ScreenCollegeDeptInfoState extends State<ScreenCollegeDeptInfo> {
@@ -29,7 +30,8 @@ class _ScreenCollegeDeptInfoState extends State<ScreenCollegeDeptInfo> {
 
   @override
   Widget build(BuildContext context) {
-    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    final Map arguments =
+        ModalRoute.of(context)!.settings.arguments as Map;
     collegeId = arguments['collegeId'];
     collegeName = arguments['collegeName'];
 
@@ -97,7 +99,8 @@ class TableDeptFacultyCount extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<TableDeptFacultyCount> createState() => _TableDeptFacultyCountState();
+  State<TableDeptFacultyCount> createState() =>
+      _TableDeptFacultyCountState();
 }
 
 class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
@@ -159,10 +162,14 @@ class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
     for (var item in facultyCounts) {
       var key = item.keys.toList()[0];
       if (key == teacherTypeName) {
-        return item[key].toString();
+        if (item[key].toString() == "0") {
+          return "-";
+        } else {
+          return item[key].toString();
+        }
       }
     }
-    return "0";
+    return "-";
   }
 
   @override
@@ -266,59 +273,59 @@ class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
             ),
           ),
         ),
-        contentCellBuilder: (columnIndex, rowIndex) =>
-            columnIndex == 0 || columnIndex == 1
+        contentCellBuilder: (columnIndex, rowIndex) => columnIndex == 0 ||
+                columnIndex == 1
+            ? Container(
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  color: cellColor,
+                ),
+                child: columnIndex == 0
+                    ? Text(
+                        widget.records[rowIndex]['HoD'] == null ||
+                                widget.records[rowIndex]['HoD'] == false
+                            ? ""
+                            : widget.records[rowIndex]['HoD'].toString(),
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 15),
+                      )
+                    : Text(
+                        calculateStaffCount(
+                                widget.records[rowIndex]['facultyCounts'])
+                            .toString(),
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 15),
+                      ),
+              )
+            : columnIndex < teacherTypeNames.length + 2 && columnIndex > 1
                 ? Container(
                     alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       color: cellColor,
                     ),
-                    child: columnIndex == 0
-                        ? Text(
-                            widget.records[rowIndex]['HoD'] == null ||
-                                    widget.records[rowIndex]['HoD'] == false
-                                ? ""
-                                : widget.records[rowIndex]['HoD'].toString(),
-                            maxLines: 2,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 15),
-                          )
-                        : Text(
-                            calculateStaffCount(
-                                    widget.records[rowIndex]['facultyCounts'])
-                                .toString(),
-                            maxLines: 2,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 15),
-                          ),
-                  )
-                : columnIndex < teacherTypeNames.length + 2 && columnIndex > 1
-                    ? Container(
-                        alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: cellColor,
-                        ),
-                        child: Text(
-                          findThisTeacherTypeCount(rowIndex, columnIndex - 2)
-                              .toString(),
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      )
-                    : const SizedBox(
-                        width: 0,
-                        height: 0,
+                    child: Text(
+                      findThisTeacherTypeCount(rowIndex, columnIndex - 2)
+                          .toString(),
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
                       ),
+                    ),
+                  )
+                : const SizedBox(
+                    width: 0,
+                    height: 0,
+                  ),
         legendCell: Container(
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width,
