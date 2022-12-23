@@ -1,9 +1,9 @@
-// var baseURLSchemed = 'http://10.184.49.31/';
-// var baseURLUnschemed = '10.184.49.31';
+var baseURLSchemed = 'http://10.184.49.31/';
+var baseURLUnschemed = '10.184.49.31';
 
 //------------------------- testing ---------------------
-var baseURLSchemed = 'http://localhost/';
-var baseURLUnschemed = 'localhost';
+// var baseURLSchemed = 'http://localhost/';
+// var baseURLUnschemed = 'localhost';
 // ------------------------- testing ---------------------
 
 const endpointStart = '/dashboard';
