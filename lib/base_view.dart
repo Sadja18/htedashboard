@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import './views/map_view.dart';
 import './screens/summary.dart';
 import './screens/gender_parity_index_screen.dart';
-import './screens/attendance.dart';
 
 class BaseView extends StatefulWidget {
   const BaseView({Key? key}) : super(key: key);
@@ -20,6 +19,9 @@ class _BaseViewState extends State<BaseView> {
         title: const Center(
           child: Text(
             "Home",
+            style: TextStyle(
+              fontSize: 15,
+            ),
           ),
         ),
       ),
@@ -84,6 +86,7 @@ class _BaseViewState extends State<BaseView> {
                   "Gender Parity Index",
                   style: TextStyle(
                     color: Colors.white,
+                    fontSize: 18,
                   ),
                 ),
               ),
@@ -110,61 +113,11 @@ class _BaseViewState extends State<BaseView> {
                   "Summary",
                   style: TextStyle(
                     color: Colors.white,
+                    fontSize: 18,
                   ),
                 ),
               ),
             ),
-            // InkWell(
-            //   onTap: () {
-            //     Navigator.of(context)
-            //         .pushNamed(ScreenAttendancePercentages.routeName);
-            //   },
-            //   child: Container(
-            //     width: MediaQuery.of(context).size.width * 0.30 * 0.50,
-            //     alignment: Alignment.center,
-            //     margin: const EdgeInsets.symmetric(
-            //       vertical: 8.0,
-            //     ),
-            //     padding: const EdgeInsets.symmetric(
-            //       vertical: 8.0,
-            //       horizontal: 3.0,
-            //     ),
-            //     decoration: BoxDecoration(
-            //       color: const Color.fromARGB(255, 134, 11, 178),
-            //       borderRadius: BorderRadius.circular(14.0),
-            //     ),
-            //     child: const Text(
-            //       "Attendance",
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // InkWell(
-            //   onTap: () {},
-            //   child: Container(
-            //     width: MediaQuery.of(context).size.width * 0.30 * 0.50,
-            //     alignment: Alignment.center,
-            //     margin: const EdgeInsets.symmetric(
-            //       vertical: 8.0,
-            //     ),
-            //     padding: const EdgeInsets.symmetric(
-            //       vertical: 8.0,
-            //       horizontal: 3.0,
-            //     ),
-            //     decoration: BoxDecoration(
-            //       color: const Color.fromARGB(255, 134, 11, 178),
-            //       borderRadius: BorderRadius.circular(14.0),
-            //     ),
-            //     child: const Text(
-            //       "Performance",
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

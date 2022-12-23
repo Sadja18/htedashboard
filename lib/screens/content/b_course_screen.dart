@@ -180,9 +180,10 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         );
       case 1:
         return const Text(
@@ -191,9 +192,10 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         );
       case 2:
         return const Text("");
@@ -204,9 +206,10 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         );
       case 4:
         return const Text(
@@ -215,9 +218,10 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         );
       case 5:
         return const Text(
@@ -226,9 +230,10 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         );
       case 6:
         return const Text(
@@ -237,9 +242,10 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         );
       case 7:
         return const Text(
@@ -248,9 +254,10 @@ class _CouseInfoStickyHeaderState extends State<CouseInfoStickyHeader> {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         );
       default:
         return const SizedBox(

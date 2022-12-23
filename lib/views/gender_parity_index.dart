@@ -1,11 +1,18 @@
 // import 'package:flutter/src/foundation/key.dart';
 // import 'package:flutter/src/widgets/framework.dart';
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../models/local_data.dart' as records;
 
 class GenderParityIndex extends StatefulWidget {
-  const GenderParityIndex({Key? key}) : super(key: key);
+  final List genderParityInfo;
+  const GenderParityIndex({
+    Key? key,
+    required this.genderParityInfo,
+  }) : super(key: key);
 
   @override
   State<GenderParityIndex> createState() => _GenderParityIndexState();
@@ -108,15 +115,21 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
 
   @override
   void initState() {
-    datasource = records.gpi
+    datasource = widget.genderParityInfo
         .map(
           (e) => ChartData(
             e['name'],
-            e['boys'],
-            e['girls'],
+            e['male'],
+            e['female'],
           ),
         )
         .toList();
+
+    if (kDebugMode) {
+      log(datasource.toString());
+      log(records.gpi.toString());
+    }
+
     super.initState();
   }
 

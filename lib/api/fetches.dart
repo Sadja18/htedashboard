@@ -121,6 +121,7 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
     if (kDebugMode) {
       log('receiving');
       log(response.statusCode.toString());
+      // log(response.body);
     }
 
     if (response.statusCode == 200) {
@@ -131,8 +132,30 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
 
           var collegeId = data['id'];
 
+          if (kDebugMode) {
+            log(data['cluster'].runtimeType.toString());
+          }
+
           var headName =
               data['head_name'] == false ? "" : data['head_name'];
+
+          var city = data['city'] == false &&
+                  data['city'] is! List &&
+                  data['city'].length < 2
+              ? ""
+              : data['city'][1];
+
+          var cluster = data['cluster'] == false &&
+                  data['cluster'] is! List &&
+                  data['cluster'].length < 2
+              ? ""
+              : data['cluster'][1];
+
+          var district = data['block'] == false &&
+                  data['block'] is! List &&
+                  data['block'].length < 2
+              ? ""
+              : data['block'][1];
 
           var affliatedTo =
               data['univ_id'] == false ? "" : data['univ_id'][1];
@@ -140,6 +163,10 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
           var email = data['email'] == false || data['email'] == ""
               ? ""
               : data['email'];
+
+          var mobile = data['mobile'] == false ? "" : data['mobile'];
+
+          var contact = data['landline'] == false ? "" : data['landline'];
 
           var deptsCount = data['dept_ids'] == false ||
                   data['dept_ids'].runtimeType != int
@@ -174,11 +201,30 @@ Future<dynamic> fetchSingleCollegeInfo(String collegeName) async {
             }
           }
 
+          // if (kDebugMode) {
+          //   print({
+          //     "collegeId": collegeId,
+          //     "HoI": headName,
+          //     "affliatedTo": affliatedTo,
+          //     'email': email,
+          //     'mobile': mobile,
+          //     'contact': contact,
+          //     'city': city,
+          //     'cluster': cluster,
+          //     'district': district.runtimeType,
+          //   });
+          // }
+
           return {
             "collegeId": collegeId,
             "HoI": headName,
+            'city': city,
+            'cluster': cluster,
+            'district': district,
             "affliatedTo": affliatedTo,
             'email': email,
+            'mobile': mobile,
+            'contact': contact,
             "deptsCount": deptsCount,
             "coursesCount": coursesCount,
             "studentsCount": studentsCount,
@@ -462,7 +508,9 @@ Future<dynamic> fetchAllCoursesInCollege(int collegeId) async {
 }
 
 Future<dynamic> fetchStudentDropoutsinCollegeCourse(
-    int collegeId, String courseName) async {
+  int collegeId,
+  String courseName,
+) async {
   try {
     if (kDebugMode) {
       log("sending dropout $collegeId $courseName");
@@ -624,6 +672,84 @@ Future<dynamic> fetchStudentAttendanceCourseCurrentSem(
     if (kDebugMode) {
       log(e.toString());
     }
+    return null;
+  }
+}
+
+Future<dynamic> fetchGenderParityFromServer() async {
+  try {
+    Map<String, String> queryParams = {"permit": "gpi"};
+    if (kDebugMode) {
+      log('sending fetch gpi');
+    }
+    var response = await http.get(
+      Uri(
+          scheme: 'http',
+          host: baseURLUnschemed,
+          path: "$endpointStart$fetchGenderParity",
+          queryParameters: queryParams),
+      headers: {
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+    );
+
+    if (kDebugMode) {
+      log("received");
+      log(response.statusCode.toString());
+      log(response.body);
+    }
+
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        log('200');
+      }
+
+      var body = jsonDecode(response.body);
+
+      if (kDebugMode) {
+        log("gpi body json decoded");
+      }
+
+      if (body["message"] != null &&
+          body['message'].toString().toLowerCase() == 'success') {
+        var data = body['data'];
+
+        if (kDebugMode) {
+          print(data.toString());
+        }
+
+        if (data is Map && data.keys.toList().isNotEmpty) {
+          var info = [];
+
+          for (var item in data.keys.toList()) {
+            var bmap = {};
+            bmap['name'] = item;
+            bmap['male'] = data[item]['male'];
+            bmap['female'] = data[item]['female'];
+            bmap['others'] = data[item]['others'];
+            bmap['total'] = data[item]['male'] +
+                data[item]['female'] +
+                data[item]['others'];
+
+            info.add(bmap);
+          }
+          if (info.isNotEmpty) {
+            return info;
+          } else {
+            return null;
+          }
+        } else {
+          return null;
+        }
+      }
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log("fetch gpi exception");
+      log(e.toString());
+    }
+
     return null;
   }
 }

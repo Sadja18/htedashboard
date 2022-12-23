@@ -14,7 +14,8 @@ class SummaryOthersTracker extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SummaryOthersTracker> createState() => _SummaryOthersTrackerState();
+  State<SummaryOthersTracker> createState() =>
+      _SummaryOthersTrackerState();
 }
 
 class _SummaryOthersTrackerState extends State<SummaryOthersTracker> {
@@ -115,39 +116,6 @@ class _SummaryOthersTrackerState extends State<SummaryOthersTracker> {
   @override
   void initState() {
     switch (widget.type) {
-      case "Medical":
-        datasource = records.summaryOthers["Medical"]!
-            .map(
-              (e) => ChartData(
-                e['name'],
-                e['total'],
-                e['annual'],
-              ),
-            )
-            .toList();
-        break;
-      case "Tourism":
-        datasource = records.summaryOthers["Tourism"]!
-            .map(
-              (e) => ChartData(
-                e['name'],
-                e['total'],
-                e['annual'],
-              ),
-            )
-            .toList();
-        break;
-      case "Private":
-        datasource = records.summaryOthers["Private"]!
-            .map(
-              (e) => ChartData(
-                e['name'],
-                e['total'],
-                e['annual'],
-              ),
-            )
-            .toList();
-        break;
       default:
         break;
     }

@@ -1,5 +1,10 @@
-const baseURLSchemed = 'http://10.184.49.31/';
-const baseURLUnschemed = '10.184.49.31';
+// var baseURLSchemed = 'http://10.184.49.31/';
+// var baseURLUnschemed = '10.184.49.31';
+
+//------------------------- testing ---------------------
+var baseURLSchemed = 'http://localhost/';
+var baseURLUnschemed = 'localhost';
+// ------------------------- testing ---------------------
 
 const endpointStart = '/dashboard';
 
@@ -13,3 +18,5 @@ const coursesInCollege = '/fetchcourseincollege.php';
 const studentDropouts = '/fetchdropouts.php';
 const facultyBaseAnalytics = '/facultybaseanalytics.php';
 const studentAttendanceCourseCurrentSem = '/studentattendancecourse.php';
+
+const fetchGenderParity = "/fetchgpi.php";

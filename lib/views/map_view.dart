@@ -229,6 +229,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -240,6 +243,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -255,6 +261,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -266,6 +275,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -281,6 +293,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -292,6 +307,47 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    const TableCell(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Contact: ",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          data['contact'] == false ||
+                                  data['contact'] == null
+                              ? data['mobile'] == false ||
+                                      data['mobile'] == null
+                                  ? ""
+                                  : data["mobile"].toString()
+                              : data["contact"].toString(),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -307,6 +363,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -330,6 +389,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontSize: 22,
+                            ),
                           ),
                         ),
                       ),
@@ -346,6 +408,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -368,6 +433,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontSize: 22,
+                            ),
                           ),
                         ),
                       ),
@@ -384,6 +452,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -407,6 +478,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontSize: 22,
+                            ),
                           ),
                         ),
                       ),
@@ -423,6 +497,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -446,6 +523,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontSize: 22,
+                            ),
                           ),
                         ),
                       ),
@@ -462,6 +542,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -492,6 +575,9 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontSize: 22,
+                            ),
                           ),
                         ),
                       ),
@@ -506,10 +592,11 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
     );
   }
 
-  Widget titleWidget(String profilePic, String collegeName) {
+  Widget titleWidget(String profilePic, String collegeName,
+      String? district, String? cluster, String? city) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.40,
-      height: MediaQuery.of(context).size.height * 0.20,
+      height: MediaQuery.of(context).size.height * 0.15,
       decoration: BoxDecoration(
         color: Colors.blue.shade600,
       ),
@@ -517,8 +604,8 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
       child: Table(
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         columnWidths: const {
-          0: FractionColumnWidth(0.30),
-          1: FractionColumnWidth(0.70),
+          0: FractionColumnWidth(0.25),
+          1: FractionColumnWidth(0.75),
         },
         children: [
           TableRow(
@@ -529,11 +616,12 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
               TableCell(
                 child: Center(
                   child: Text(
-                    collegeName,
+                    "$collegeName\n$city, $cluster, $district",
                     softWrap: true,
                     maxLines: 4,
                     style: const TextStyle(
                       color: Colors.white,
+                      fontSize: 20,
                     ),
                   ),
                 ),
@@ -555,7 +643,13 @@ class _MapViewInstituteState extends State<MapViewInstitute> {
           builder: (ctx) {
             return AlertDialog(
               titlePadding: const EdgeInsets.all(0),
-              title: titleWidget(data['profilePic'], collegeName),
+              title: titleWidget(
+                data['profilePic'],
+                collegeName,
+                data['district'],
+                data['cluster'],
+                data['city'],
+              ),
               content: Container(
                 width: MediaQuery.of(context).size.width * 0.40,
                 height: MediaQuery.of(context).size.height * 0.45,
@@ -1202,8 +1296,8 @@ class AvatarBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.40,
-      height: MediaQuery.of(context).size.height * 0.20,
+      width: MediaQuery.of(context).size.width * 0.35,
+      height: MediaQuery.of(context).size.height * 0.15,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         color: Colors.white,

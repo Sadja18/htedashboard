@@ -223,7 +223,7 @@ class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 15,
                               color: Colors.white,
                             ),
                           )
@@ -234,7 +234,7 @@ class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: Colors.white,
                                 ),
                               )
@@ -244,7 +244,7 @@ class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: Colors.white,
                                 ),
                               ),
@@ -291,7 +291,9 @@ class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 15),
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15,
+                        ),
                       )
                     : Text(
                         calculateStaffCount(
@@ -300,7 +302,9 @@ class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 15),
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15,
+                        ),
                       ),
               )
             : columnIndex < teacherTypeNames.length + 2 && columnIndex > 1
@@ -339,7 +343,7 @@ class _TableDeptFacultyCountState extends State<TableDeptFacultyCount> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20,
+              fontSize: 15,
               color: Colors.white,
             ),
           ),

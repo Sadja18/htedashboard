@@ -44,9 +44,24 @@ class _SelectorState extends State<Selector> {
       child: SingleChildScrollView(
         child: Row(
           children: [
-            Text(optionNames.toString()),
-            Text("${MediaQuery.of(context).size.width}"),
-            Text("${MediaQuery.of(context).size.height}"),
+            Text(
+              optionNames.toString(),
+              style: const TextStyle(
+                fontSize: 15,
+              ),
+            ),
+            Text(
+              "${MediaQuery.of(context).size.width}",
+              style: const TextStyle(
+                fontSize: 15,
+              ),
+            ),
+            Text(
+              "${MediaQuery.of(context).size.height}",
+              style: const TextStyle(
+                fontSize: 15,
+              ),
+            ),
           ],
         ),
       ),

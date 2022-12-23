@@ -96,7 +96,7 @@ class _StudentDropoutWidgetState extends State<StudentDropoutWidget> {
                           maxLines: 2,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 15,
                           ),
                         ),
                       ),

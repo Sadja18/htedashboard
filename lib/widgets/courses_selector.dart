@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,8 @@ class SelectorCourseFuture extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SelectorCourseFuture> createState() => _SelectorCourseFutureState();
+  State<SelectorCourseFuture> createState() =>
+      _SelectorCourseFutureState();
 }
 
 class _SelectorCourseFutureState extends State<SelectorCourseFuture> {
@@ -44,7 +46,12 @@ class _SelectorCourseFutureState extends State<SelectorCourseFuture> {
             } else {
               return const Center(
                 child: SizedBox(
-                  child: Text("No records found"),
+                  child: Text(
+                    "No records found",
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
               );
             }
@@ -61,7 +68,8 @@ class SelectorCourseDropdown extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<SelectorCourseDropdown> createState() => _SelectorCourseDropdownState();
+  State<SelectorCourseDropdown> createState() =>
+      _SelectorCourseDropdownState();
 }
 
 class _SelectorCourseDropdownState extends State<SelectorCourseDropdown> {
@@ -95,7 +103,14 @@ class _SelectorCourseDropdownState extends State<SelectorCourseDropdown> {
         value: selectedCourseName,
         items: courseNames
             .map(
-              (e) => DropdownMenuItem(value: e, child: Text(e.toString())),
+              (e) => DropdownMenuItem(
+                  value: e,
+                  child: Text(
+                    e.toString(),
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
+                  )),
             )
             .toList(),
         onChanged: (selectedValue) {

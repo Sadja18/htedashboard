@@ -19,7 +19,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 1,
       child: Scaffold(
         appBar: AppBar(
           title: const Center(
@@ -29,24 +29,24 @@ class _SummaryScreenState extends State<SummaryScreen> {
             tabs: [
               Tab(
                 child: Center(
-                  child: Text("Institute-wise"),
+                  child: Text(""),
                 ),
               ),
-              Tab(
-                child: Center(
-                  child: Text("Medical"),
-                ),
-              ),
-              Tab(
-                child: Center(
-                  child: Text("Tourism"),
-                ),
-              ),
-              Tab(
-                child: Center(
-                  child: Text("Private"),
-                ),
-              )
+              // Tab(
+              //   child: Center(
+              //     child: Text("Medical"),
+              //   ),
+              // ),
+              // Tab(
+              //   child: Center(
+              //     child: Text("Tourism"),
+              //   ),
+              // ),
+              // Tab(
+              //   child: Center(
+              //     child: Text("Private"),
+              //   ),
+              // )
             ],
           ),
         ),
@@ -56,21 +56,21 @@ class _SummaryScreenState extends State<SummaryScreen> {
             SizedBox(
               child: SummaryTracker(),
             ),
-            SizedBox(
-              child: SummaryOthersTracker(
-                type: "Medical",
-              ),
-            ),
-            SizedBox(
-              child: SummaryOthersTracker(
-                type: "Tourism",
-              ),
-            ),
-            SizedBox(
-              child: SummaryOthersTracker(
-                type: "Private",
-              ),
-            ),
+            // SizedBox(
+            //   child: SummaryOthersTracker(
+            //     type: "Medical",
+            //   ),
+            // ),
+            // SizedBox(
+            //   child: SummaryOthersTracker(
+            //     type: "Tourism",
+            //   ),
+            // ),
+            // SizedBox(
+            //   child: SummaryOthersTracker(
+            //     type: "Private",
+            //   ),
+            // ),
           ],
         ),
       ),
