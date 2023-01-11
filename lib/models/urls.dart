@@ -20,3 +20,4 @@ const facultyBaseAnalytics = '/facultybaseanalytics.php';
 const studentAttendanceCourseCurrentSem = '/studentattendancecourse.php';
 
 const fetchGenderParity = "/fetchgpi.php";
+const fetchTeacherDailyAttendance = "/fetchgpi.php";

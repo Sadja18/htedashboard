@@ -753,3 +753,67 @@ Future<dynamic> fetchGenderParityFromServer() async {
     return null;
   }
 }
+
+Future<dynamic> fetchTeacherDailyAttendanceFromServer() async {
+  try {
+    if (kDebugMode) {
+      print("sending fetch teacher daily attendance");
+    }
+    Map<String, String> queryParams = {"permit": "attend"};
+    var response = await http.get(
+      Uri(
+        scheme: 'http',
+        host: baseURLUnschemed,
+        path: "$endpointStart$fetchTeacherDailyAttendance",
+        queryParameters: queryParams,
+      ),
+      headers: {
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+    );
+
+    if (kDebugMode) {
+      log("received fetch");
+      log(response.statusCode.toString());
+      log(response.body);
+    }
+
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        log('200');
+      }
+
+      var body = jsonDecode(response.body);
+
+      if (kDebugMode) {
+        log("fetch teacher daily attendance body json decoded");
+      }
+
+      if (body["message"] != null &&
+          body['message'].toString().toLowerCase() == 'success') {
+        var data = body['data'];
+        if (kDebugMode) {
+          print("fetch teacher daily attendance");
+          print(data.toString());
+        }
+
+        if (data != null && data.isNotEmpty) {
+          return data;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      log("fetch teacher daily attendance error");
+      log(e.toString());
+    }
+    return null;
+  }
+}

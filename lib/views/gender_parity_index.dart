@@ -20,16 +20,24 @@ class GenderParityIndex extends StatefulWidget {
 
 class _GenderParityIndexState extends State<GenderParityIndex> {
   late List<ChartData> datasource;
+  var _tooltipBehaviour = TooltipBehavior(enable: true);
 
   Widget tableCell(index) {
+    var end = index + 4;
+    end = end > datasource.length ? datasource.length : end;
+
     return TableCell(
-      child: Center(
+      child: Container(
+        alignment: Alignment.center,
+        height: MediaQuery.of(context).size.width * 0.18,
         child: SfCartesianChart(
+          tooltipBehavior: _tooltipBehaviour,
+          margin: const EdgeInsets.all(25),
           enableSideBySideSeriesPlacement: true,
           primaryXAxis: CategoryAxis(
             isVisible: true,
           ),
-          primaryYAxis: NumericAxis(),
+          // primaryYAxis: NumericAxis(),
           legend: Legend(
             isVisible: true,
           ),
@@ -38,27 +46,28 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
             Colors.orange,
           ],
           series: [
-            ColumnSeries(
+            StackedColumnSeries<ChartData, String>(
               name: "Boys",
-              yAxisName: "Boys",
-              // isVisibleInLegend: true,
-              isVisible: true,
-              dataSource: [datasource[index]],
+              width: 0.09,
+              dataSource: datasource.sublist(index, end),
               xValueMapper: (ChartData data, _) => data.collegeName,
               yValueMapper: (ChartData data, _) => data.numBoys,
+              enableTooltip: true,
               dataLabelSettings: const DataLabelSettings(
                 isVisible: true,
+                showCumulativeValues: true,
               ),
             ),
-            ColumnSeries(
+            StackedColumnSeries<ChartData, String>(
               name: "Girls",
-              yAxisName: "Girls",
-              isVisible: true,
-              dataSource: [datasource[index]],
+              width: 0.09,
+              dataSource: datasource.sublist(index, end),
               xValueMapper: (ChartData data, _) => data.collegeName,
               yValueMapper: (ChartData data, _) => data.numGirls,
+              enableTooltip: true,
               dataLabelSettings: const DataLabelSettings(
                 isVisible: true,
+                showCumulativeValues: true,
               ),
             ),
           ],
@@ -76,24 +85,6 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
                 height: 0,
                 width: 0,
               ),
-        (baseIndex + 1 < datasource.length)
-            ? tableCell(baseIndex + 1)
-            : const SizedBox(
-                height: 0,
-                width: 0,
-              ),
-        (baseIndex + 2 < datasource.length)
-            ? tableCell(baseIndex + 2)
-            : const SizedBox(
-                height: 0,
-                width: 0,
-              ),
-        (baseIndex + 3 < datasource.length)
-            ? tableCell(baseIndex + 3)
-            : const SizedBox(
-                height: 0,
-                width: 0,
-              ),
       ],
     );
   }
@@ -101,11 +92,10 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
   List<TableRow> tableGen() {
     List<TableRow> rows = [];
 
-    for (int i = 0; i < datasource.length; i++) {
+    for (int i = 0; i < datasource.length; i = i + 4) {
       if (i < datasource.length) {
         TableRow tableRowTmp = tableRow(i);
         rows.add(tableRowTmp);
-        i = i + 3;
       } else {
         break;
       }
@@ -115,6 +105,7 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
 
   @override
   void initState() {
+    _tooltipBehaviour = TooltipBehavior(enable: true);
     datasource = widget.genderParityInfo
         .map(
           (e) => ChartData(
@@ -126,8 +117,8 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
         .toList();
 
     if (kDebugMode) {
-      log(datasource.toString());
-      log(records.gpi.toString());
+      print(datasource);
+      // log(records.gpi.toString());
     }
 
     super.initState();
@@ -136,7 +127,7 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
+      alignment: Alignment.topCenter,
       width: MediaQuery.of(context).size.width * 0.98,
       height: MediaQuery.of(context).size.height * 0.95,
       child: SingleChildScrollView(
