@@ -256,95 +256,96 @@ class _ProfileTabChildState extends State<ProfileTabChild> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.08,
-                      decoration: const BoxDecoration(
-                          // color: Colors.blueAccent,
-                          ),
-                      alignment: Alignment.center,
-                      child: Table(
-                        defaultVerticalAlignment:
-                            TableCellVerticalAlignment.middle,
-                        columnWidths: const {
-                          0: FractionColumnWidth(0.450),
-                          1: FractionColumnWidth(0.300),
-                          2: FractionColumnWidth(0.30),
-                        },
-                        children: [
-                          TableRow(
-                            children: [
-                              TableCell(
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height,
-                                  child: Table(
-                                    defaultVerticalAlignment:
-                                        TableCellVerticalAlignment.middle,
-                                    columnWidths: {
-                                      0: FractionColumnWidth(0.20),
-                                      1: FractionColumnWidth(0.80),
-                                    },
-                                    children: [
-                                      TableRow(
-                                        children: [
-                                          TableCell(
-                                            child: Container(
-                                              decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                              ),
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              child: Center(
-                                                child: Text(
-                                                  "Department: ",
-                                                  textAlign: TextAlign.center,
-                                                  maxLines: 2,
-                                                  style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          TableCell(
-                                            child: SizedBox(
-                                              // width: MediaQuery.of(context).size.width,
-                                              child: SelectorProfile(
-                                                stringValues:
-                                                    getAllDept(counts),
-                                                callbackProfile:
-                                                    deptNameCallback,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              TableCell(
-                                child: widgetDynamicSelector(
-                                  "Designation: ",
-                                  getAllDesignation(counts),
-                                  designationCallback,
-                                ),
-                              ),
-                              TableCell(
-                                child: widgetDynamicSelector(
-                                  "Appointment Type",
-                                  getAllAppointmentTypes(counts),
-                                  appointmentTypeCallback,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   width: MediaQuery.of(context).size.width,
+                    //   height: MediaQuery.of(context).size.height * 0.08,
+                    //   decoration: const BoxDecoration(
+                    //       // color: Colors.blueAccent,
+                    //       ),
+                    //   alignment: Alignment.center,
+                    //   child: Table(
+                    //     defaultVerticalAlignment:
+                    //         TableCellVerticalAlignment.middle,
+                    //     columnWidths: const {
+                    //       0: FractionColumnWidth(0.450),
+                    //       1: FractionColumnWidth(0.300),
+                    //       2: FractionColumnWidth(0.30),
+                    //     },
+                    //     children: [
+                    //       TableRow(
+                    //         children: [
+                    //           TableCell(
+                    //             child: SizedBox(
+                    //               width: MediaQuery.of(context).size.width,
+                    //               height: MediaQuery.of(context).size.height,
+                    //               child: Table(
+                    //                 defaultVerticalAlignment:
+                    //                     TableCellVerticalAlignment.middle,
+                    //                 columnWidths: {
+                    //                   0: FractionColumnWidth(0.20),
+                    //                   1: FractionColumnWidth(0.80),
+                    //                 },
+                    //                 children: [
+                    //                   TableRow(
+                    //                     children: [
+                    //                       TableCell(
+                    //                         child: Container(
+                    //                           decoration: const BoxDecoration(
+                    //                             color: Colors.white,
+                    //                           ),
+                    //                           width: MediaQuery.of(context)
+                    //                               .size
+                    //                               .width,
+                    //                           child: Center(
+                    //                             child: Text(
+                    //                               "Department: ",
+                    //                               textAlign: TextAlign.center,
+                    //                               maxLines: 2,
+                    //                               style: const TextStyle(
+                    //                                 fontWeight: FontWeight.bold,
+                    //                                 fontSize: 20,
+                    //                               ),
+                    //                             ),
+                    //                           ),
+                    //                         ),
+                    //                       ),
+                    //                       TableCell(
+                    //                         child: SizedBox(
+                    //                           // width: MediaQuery.of(context).size.width,
+                    //                           child: SelectorProfile(
+                    //                             stringValues:
+                    //                                 getAllDept(counts),
+                    //                             callbackProfile:
+                    //                                 deptNameCallback,
+                    //                           ),
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ],
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           TableCell(
+                    //             child: widgetDynamicSelector(
+                    //               "Designation: ",
+                    //               getAllDesignation(counts),
+                    //               designationCallback,
+                    //             ),
+                    //           ),
+                    //           TableCell(
+                    //             child: widgetDynamicSelector(
+                    //               "Appointment Type",
+                    //               getAllAppointmentTypes(counts),
+                    //               appointmentTypeCallback,
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+
                     Container(
                       width: MediaQuery.of(context).size.width * 0.90,
                       height: MediaQuery.of(context).size.height * 0.70,
