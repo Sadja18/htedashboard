@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import './screens/login.dart';
 
 import './base_view.dart';
 import './screens/details.dart';
@@ -37,22 +38,24 @@ class MyApp extends StatelessWidget {
 
       // home: BaseView(),
       routes: {
-        "/": (ctx) => BaseView(),
+        "/": (ctx) => login(),
         ScreenDetailTables.routeName: (ctx) => ScreenDetailTables(),
         SummaryScreen.routeName: (ctx) => SummaryScreen(),
         GPIScreen.routeName: (ctx) => GPIScreen(),
         ScreenAttendancePercentages.routeName: (ctx) =>
             ScreenAttendancePercentages(),
         ScreenCollegeDeptInfo.routeName: (ctx) => ScreenCollegeDeptInfo(),
-        ScreenCollegeCourseInfo.routeName: (ctx) =>
-            ScreenCollegeCourseInfo(),
-        ScreenTeachingStaffInfo.routename: (ctx) =>
-            ScreenTeachingStaffInfo(),
+        ScreenCollegeCourseInfo.routeName: (ctx) => ScreenCollegeCourseInfo(),
+        ScreenTeachingStaffInfo.routename: (ctx) => ScreenTeachingStaffInfo(),
         ScreenNtStaff.routeName: (ctx) => ScreenNtStaff(),
-        ScreenStudentDropoutInfo.routeName: (ctx) =>
-            ScreenStudentDropoutInfo(),
+        ScreenStudentDropoutInfo.routeName: (ctx) => ScreenStudentDropoutInfo(),
       },
       // debugShowCheckedModeBanner: false,
     );
   }
 }
+
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   runApp(MyApp());
+// }
