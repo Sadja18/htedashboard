@@ -144,6 +144,6 @@ class _GenderParityIndexState extends State<GenderParityIndex> {
 class ChartData {
   ChartData(this.collegeName, this.numBoys, this.numGirls);
   final String collegeName;
-  final double numBoys;
-  final double numGirls;
+  final int numBoys;
+  final int numGirls;
 }

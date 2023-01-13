@@ -60,6 +60,7 @@ flutter:
       - assets/images/marker_hat_filled.jpeg
       - assets/images/marker_hat_filled.png
       - assets/images/marker_hat_outline.png
+      - assets/images/user.png
   #   - images/a_dot_burr.jpeg
       - assets/base_info.json
   #   - images/a_dot_ham.jpeg
